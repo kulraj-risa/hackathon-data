@@ -65,6 +65,20 @@ pip install -r requirements.txt
 python build_app_data.py
 ```
 
+## Model
+
+`python model_trainer.py` trains an XGBoost classifier (Denied vs Approved) on
+`data/training_data.parquet` and writes the slim artifact to
+`app_data/denial_model.pkl` (no PHI — ships in the API image).
+
+- **Pipeline:** `feature_engineer.py` (28 features) → `model_trainer.py` → `denial_predictor.py`.
+- **Real-schema features:** question counts, completeness, and **supportive vs.
+  contradictory fact** totals/ratios (the guide's `confidence` /
+  `evidence_quality` fields don't exist in the data), plus drug class & payer.
+- **Honest performance:** ROC-AUC ≈ 0.65 on held-out data — contradictory-fact
+  ratio is the strongest signal (denial rate rises 26% → 53% as it grows). The
+  guide's "92%" assumed fields that aren't present.
+
 ## Deploy (Cloud Run, two services)
 
 ```bash
@@ -86,5 +100,5 @@ gcloud run deploy risa-denial-web --source . --project rapids-platform \
 | GET | `/api/summary` | Headline dataset metrics |
 | GET | `/api/denial-stats` | Denial rate by drug class × payer |
 | GET | `/api/samples` | De-identified sample cases |
-| POST | `/api/predict` | Risk score (placeholder until model wired in) |
+| POST | `/api/predict` | Denial risk + recommendations (trained XGBoost model) |
 | GET | `/api/audit` | Recent (de-identified) prediction log |

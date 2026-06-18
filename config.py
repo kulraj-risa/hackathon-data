@@ -7,10 +7,12 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).parent
 DATA_DIR = PROJECT_ROOT / "data"
 MODELS_DIR = PROJECT_ROOT / "models"
+APP_DATA_DIR = PROJECT_ROOT / "app_data"  # de-identified artifacts baked into the image
 
 # Create directories if they don't exist
 DATA_DIR.mkdir(exist_ok=True)
 MODELS_DIR.mkdir(exist_ok=True)
+APP_DATA_DIR.mkdir(exist_ok=True)
 
 # BigQuery configuration
 BIGQUERY_PROJECT = os.getenv("BIGQUERY_PROJECT", "prior--backen-prod-svc-u4g8")
@@ -22,8 +24,10 @@ TABLE_QUESTIONNAIRES = "questionnaire_data"
 # Model parameters
 RANDOM_SEED = 42
 TEST_SIZE = 0.2
-DENIAL_RISK_THRESHOLD_HIGH = 0.70  # 70%+
-DENIAL_RISK_THRESHOLD_LOW = 0.30   # <30%
+# Risk bands calibrated to the trained model's probability range
+# (base denial rate is ~40%; the model rarely exceeds ~0.7).
+DENIAL_RISK_THRESHOLD_HIGH = 0.55  # >=55% -> HIGH
+DENIAL_RISK_THRESHOLD_LOW = 0.35   # <35%  -> LOW
 
 # Training parameters
 XGBOOST_PARAMS = {

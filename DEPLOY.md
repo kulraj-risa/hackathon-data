@@ -127,6 +127,6 @@ gcloud run deploy risa-denial-web --source . --project rapids-platform \
 - [x] De-identified app data generated
 - [ ] `gcloud auth login` + API enablement (needs you, interactive)
 - [ ] First Cloud Run deploy (API, then frontend with `BACKEND_URL`)
-- [ ] Wire real model into the Predict endpoint (after `model_trainer.py`)
+- [x] Real XGBoost model trained + wired into `/api/predict` (ROC-AUC ≈ 0.65)
 - [ ] Choose persistent storage backend (Firestore vs BigQuery)
 ```

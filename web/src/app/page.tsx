@@ -33,6 +33,7 @@ type PredictResult = {
   recommendations: string[];
   record_id?: string;
   model?: string;
+  model_auc?: number;
 };
 
 type AuditRow = Record<string, unknown>;
@@ -243,11 +244,35 @@ function SegmentTable({ rows }: { rows: Segment[] }) {
   );
 }
 
+const PRESETS: Record<string, Partial<Form>> = {
+  "Clean case": { totalQ: 12, answeredQ: 12, sup: 24, con: 0, medClass: "Brand" },
+  "Conflicted case": { totalQ: 10, answeredQ: 8, sup: 3, con: 12, payer: "Fidelis Care" },
+  "No questionnaire": { totalQ: 0, answeredQ: 0, sup: 0, con: 0 },
+};
+
+type Form = {
+  medClass: string;
+  payer: string;
+  totalQ: number;
+  answeredQ: number;
+  sup: number;
+  con: number;
+};
+
 function Predict() {
-  const [medClass, setMedClass] = useState("Brand");
-  const [payer, setPayer] = useState("Aetna Commercial");
+  const [form, setForm] = useState<Form>({
+    medClass: "Brand",
+    payer: "Aetna Commercial",
+    totalQ: 10,
+    answeredQ: 9,
+    sup: 4,
+    con: 8,
+  });
   const [result, setResult] = useState<PredictResult | null>(null);
   const [loading, setLoading] = useState(false);
+
+  const set = <K extends keyof Form>(k: K, v: Form[K]) =>
+    setForm((f) => ({ ...f, [k]: v }));
 
   const analyze = useCallback(async () => {
     setLoading(true);
@@ -256,43 +281,78 @@ function Predict() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          medication_class: medClass,
-          payer_name: payer,
           case_id: "demo",
+          medication_class: form.medClass,
+          payer_name: form.payer,
+          total_questions: form.totalQ,
+          answered_questions: form.answeredQ,
+          supportive_facts: form.sup,
+          contradictory_facts: form.con,
         }),
       });
       setResult(await r.json());
     } finally {
       setLoading(false);
     }
-  }, [medClass, payer]);
+  }, [form]);
+
+  const num = (k: keyof Form, label: string) => (
+    <label className="block">
+      <span className="mb-1.5 block text-sm text-[#9aa6c0]">{label}</span>
+      <input
+        type="number"
+        min={0}
+        value={form[k] as number}
+        onChange={(e) => set(k, Number(e.target.value) as Form[keyof Form])}
+        className="w-full rounded-xl border border-[#263255] bg-[#0b1020] px-3 py-2.5 text-sm"
+      />
+    </label>
+  );
 
   return (
     <Panel>
       <h2 className="mb-2 text-base font-semibold">Single-case denial risk</h2>
       <p className="mb-4 text-sm text-[#9aa6c0]">
-        🚧 Inference is a placeholder until the trained model is wired in. Training
-        runs offline (local / Vertex AI); this service only serves. Submitting logs a
+        Scored by the trained XGBoost model. Contradictory findings are the top
+        denial driver — increase them and watch the risk climb. Each run logs a
         de-identified record to the audit store.
       </p>
-      <div className="grid gap-4 md:grid-cols-2">
+
+      <div className="mb-4 flex flex-wrap gap-2">
+        {Object.keys(PRESETS).map((name) => (
+          <button
+            key={name}
+            onClick={() => setForm((f) => ({ ...f, ...PRESETS[name] }))}
+            className="rounded-lg border border-[#263255] bg-[#1b2340] px-3 py-1.5 text-xs text-[#9aa6c0] hover:text-white"
+          >
+            {name}
+          </button>
+        ))}
+      </div>
+
+      <div className="grid gap-4 md:grid-cols-3">
         <label className="block">
           <span className="mb-1.5 block text-sm text-[#9aa6c0]">Drug class</span>
           <input
-            value={medClass}
-            onChange={(e) => setMedClass(e.target.value)}
+            value={form.medClass}
+            onChange={(e) => set("medClass", e.target.value)}
             className="w-full rounded-xl border border-[#263255] bg-[#0b1020] px-3 py-2.5 text-sm"
           />
         </label>
-        <label className="block">
+        <label className="block md:col-span-2">
           <span className="mb-1.5 block text-sm text-[#9aa6c0]">Payer</span>
           <input
-            value={payer}
-            onChange={(e) => setPayer(e.target.value)}
+            value={form.payer}
+            onChange={(e) => set("payer", e.target.value)}
             className="w-full rounded-xl border border-[#263255] bg-[#0b1020] px-3 py-2.5 text-sm"
           />
         </label>
+        {num("totalQ", "Total questions")}
+        {num("answeredQ", "Answered questions")}
+        {num("sup", "Supportive facts")}
+        {num("con", "Contradictory facts")}
       </div>
+
       <button
         onClick={analyze}
         disabled={loading}
@@ -321,8 +381,9 @@ function Predict() {
             ))}
           </ul>
           <p className="mt-2 text-xs text-[#9aa6c0]">
-            Logged to audit store (record_id={(result.record_id ?? "").slice(0, 8)}… ·
-            model={result.model})
+            model={result.model}
+            {result.model_auc ? ` · test AUC ${result.model_auc}` : ""} · logged
+            record_id={(result.record_id ?? "").slice(0, 8)}…
           </p>
         </div>
       )}

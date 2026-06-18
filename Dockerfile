@@ -8,12 +8,16 @@ ENV PYTHONUNBUFFERED=1 \
 
 WORKDIR /app
 
+# libgomp1 is required by xgboost's native library on Debian slim.
+RUN apt-get update && apt-get install -y --no-install-recommends libgomp1 \
+    && rm -rf /var/lib/apt/lists/*
+
 # Install runtime deps first for better layer caching.
 COPY requirements-app.txt .
 RUN pip install --no-cache-dir -r requirements-app.txt
 
-# API code + precomputed de-identified data (NO PHI in the image).
-COPY app.py storage.py config.py ./
+# API code + trained model + precomputed de-identified data (NO PHI in the image).
+COPY app.py storage.py config.py feature_engineer.py denial_predictor.py ./
 COPY app_data/ ./app_data/
 
 EXPOSE 8080

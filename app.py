@@ -64,6 +64,10 @@ class PredictRequest(BaseModel):
     medication_class: str = "Brand"
     payer_name: str = "Aetna Commercial"
     case_id: str = "demo"
+    total_questions: int = 10
+    answered_questions: int = 10
+    supportive_facts: int = 8
+    contradictory_facts: int = 4
 
 
 # --------------------------------------------------------------------------- #
@@ -107,24 +111,38 @@ def api_audit(limit: int = 100) -> list[dict]:
 
 @app.post("/api/predict")
 def api_predict(req: PredictRequest) -> dict:
-    """Placeholder risk scorer.
+    """Score a PA case with the trained XGBoost model.
 
-    Returns a fixed high-risk result and logs a de-identified audit record.
-    Swap the body for a real call into denial_predictor.py once the model
-    artifact exists.
+    Falls back to a placeholder only if the model artifact is missing
+    (e.g. before `python model_trainer.py` has been run).
     """
-    risk = 85.0
+    case = req.model_dump()
+    try:
+        from denial_predictor import get_predictor
+
+        scored = get_predictor().predict(case)
+        model_name = scored["model"]
+    except Exception:  # noqa: BLE001  - model missing / deps absent -> placeholder
+        scored = {
+            "denial_risk": 85.0,
+            "risk_level": "HIGH",
+            "recommendations": ["Train the model: run `python model_trainer.py`."],
+        }
+        model_name = "placeholder"
+
     result = {
         "case_id": req.case_id,
         "medication_class": req.medication_class,
         "payer_name": req.payer_name,
-        "denial_risk": risk,
-        "risk_level": "HIGH",
-        "recommendations": [
-            "Document trial & failure dates",
-            "Attach progress note",
-        ],
-        "event": "predict_placeholder",
+        "denial_risk": scored["denial_risk"],
+        "risk_level": scored["risk_level"],
+        "recommendations": scored["recommendations"],
+        "event": "predict",
     }
     rid = get_store().log_prediction(result)
-    return {**result, "record_id": rid, "model": "placeholder"}
+    return {
+        **result,
+        "record_id": rid,
+        "model": model_name,
+        "model_auc": scored.get("model_auc"),
+    }
