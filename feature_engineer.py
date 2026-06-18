@@ -78,6 +78,83 @@ def aggregates_from_questions(questions: Any) -> dict[str, float]:
     return {"supportive_facts": float(sup), "contradictory_facts": float(con)}
 
 
+def _iter(x: Any):
+    """Yield items from a list / numpy array, tolerating None and scalars."""
+    if x is None:
+        return
+    try:
+        for item in x:
+            yield item
+    except TypeError:
+        yield x
+
+
+def fact_strings_from_questions(questions: Any) -> tuple[list[str], list[str]]:
+    """Collect supportive / contradictory fact strings across a case's questions."""
+    sup: list[str] = []
+    con: list[str] = []
+    if questions is not None and _arr_len(questions) > 0:
+        for q in questions:
+            if not isinstance(q, dict):
+                continue
+            api = q.get("api_response") or {}
+            facts = api.get("facts") or {}
+            for s in _iter(facts.get("supportive_facts")):
+                if s is not None and str(s).strip():
+                    sup.append(str(s).strip())
+            for c in _iter(facts.get("contradictory_facts")):
+                if c is not None and str(c).strip():
+                    con.append(str(c).strip())
+    return sup, con
+
+
+def answers_from_questions(questions: Any) -> list[str]:
+    """Per-question AI answers (e.g. YES / NO) — a cheap, predictive signal."""
+    out: list[str] = []
+    for q in _iter(questions):
+        if not isinstance(q, dict):
+            continue
+        api = q.get("api_response") or {}
+        a = api.get("answer")
+        if a is not None and str(a).strip():
+            out.append(str(a).strip())
+    return out
+
+
+def build_fact_text(
+    sup_texts: list[str], con_texts: list[str], answers: list[str] | None = None
+) -> str:
+    """Compose the bag-of-words document the TF-IDF model is trained/served on.
+
+    Supportive / contradictory facts are prefixed so the vectorizer can tell a
+    statement appearing as *support* apart from the same statement appearing as
+    a *contradiction* (the polarity is what carries the denial signal).
+    """
+    parts: list[str] = []
+    for a in answers or []:
+        parts.append("ANS " + str(a))
+    for s in sup_texts:
+        parts.append("SUP " + str(s))
+    for c in con_texts:
+        parts.append("CON " + str(c))
+    return " ".join(parts)
+
+
+def case_fact_strings(case: dict[str, Any]) -> tuple[list[str], list[str], list[str]]:
+    """Pull (supportive, contradictory, answers) text from a single-case payload.
+
+    Accepts either rich text (``supportive_texts`` / ``contradictory_texts`` lists,
+    or a full ``questions`` array) or nothing (counts-only case -> empty text).
+    """
+    if case.get("questions"):
+        sup, con = fact_strings_from_questions(case["questions"])
+        return sup, con, answers_from_questions(case["questions"])
+    sup = [str(s).strip() for s in _iter(case.get("supportive_texts")) if str(s).strip()]
+    con = [str(c).strip() for c in _iter(case.get("contradictory_texts")) if str(c).strip()]
+    ans = [str(a).strip() for a in _iter(case.get("answers")) if str(a).strip()]
+    return sup, con, ans
+
+
 class FeatureEngineer:
     """Builds a fixed feature vector usable for both training and serving."""
 
@@ -104,7 +181,19 @@ class FeatureEngineer:
         X = pd.DataFrame([row])
         return X.reindex(columns=self.feature_names, fill_value=0.0)
 
+    def fact_text_from_case(self, case: dict[str, Any]) -> str:
+        sup, con, ans = case_fact_strings(case)
+        return build_fact_text(sup, con, ans)
+
     # ----------------------------------------------------------- training API
+    def fact_texts(self, df: pd.DataFrame) -> list[str]:
+        """One bag-of-words document per case, for the TF-IDF text channel."""
+        docs: list[str] = []
+        for q in df.get("questions", pd.Series([None] * len(df))):
+            sup, con = fact_strings_from_questions(q)
+            docs.append(build_fact_text(sup, con, answers_from_questions(q)))
+        return docs
+
     def transform(self, df: pd.DataFrame) -> pd.DataFrame:
         rows = []
         for _, r in df.iterrows():
@@ -141,8 +230,17 @@ class FeatureEngineer:
         for k in CASE_INPUTS:
             if case.get(k) is not None:
                 agg[k] = case[k]
-        # Allow passing a raw `questions` array instead of fact totals.
-        if "questions" in case and case["questions"]:
+        # Fact counts may arrive as ints OR as lists of fact strings.
+        for k in ("supportive_facts", "contradictory_facts"):
+            if isinstance(agg[k], (list, tuple)):
+                agg[k] = float(len(agg[k]))
+        # Rich text lists override counts when present.
+        if case.get("supportive_texts") is not None:
+            agg["supportive_facts"] = float(_arr_len(case["supportive_texts"]))
+        if case.get("contradictory_texts") is not None:
+            agg["contradictory_facts"] = float(_arr_len(case["contradictory_texts"]))
+        # A full `questions` array supersedes everything.
+        if case.get("questions"):
             facts = aggregates_from_questions(case["questions"])
             agg["supportive_facts"] = facts["supportive_facts"]
             agg["contradictory_facts"] = facts["contradictory_facts"]

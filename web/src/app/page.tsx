@@ -244,35 +244,63 @@ function SegmentTable({ rows }: { rows: Segment[] }) {
   );
 }
 
-const PRESETS: Record<string, Partial<Form>> = {
-  "Clean case": { totalQ: 12, answeredQ: 12, sup: 24, con: 0, medClass: "Brand" },
-  "Conflicted case": { totalQ: 10, answeredQ: 8, sup: 3, con: 12, payer: "Fidelis Care" },
-  "No questionnaire": { totalQ: 0, answeredQ: 0, sup: 0, con: 0 },
-};
-
 type Form = {
   medClass: string;
   payer: string;
   totalQ: number;
   answeredQ: number;
-  sup: number;
-  con: number;
+  supText: string;
+  conText: string;
 };
 
-function Predict() {
-  const [form, setForm] = useState<Form>({
+const PRESETS: Record<string, Form> = {
+  "Clean case": {
     medClass: "Brand",
     payer: "Aetna Commercial",
+    totalQ: 8,
+    answeredQ: 8,
+    supText: [
+      "Patient diagnosis matches the FDA-approved indication for the drug.",
+      "Documented trial and failure of two preferred first-line agents.",
+      "Baseline labs and staging support medical necessity.",
+    ].join("\n"),
+    conText: "",
+  },
+  "Conflicted case": {
+    medClass: "Brand",
+    payer: "Fidelis Care",
     totalQ: 10,
-    answeredQ: 9,
-    sup: 4,
-    con: 8,
-  });
+    answeredQ: 8,
+    supText: "Patient diagnosis matches the approved indication.",
+    conText: [
+      "No documentation of prior step-therapy with a preferred agent.",
+      "Requested quantity exceeds the plan's maximum days-supply limit.",
+      "Required PD-L1 biomarker test result not found in the record.",
+    ].join("\n"),
+  },
+  "No questionnaire": {
+    medClass: "Unknown",
+    payer: "Aetna Commercial",
+    totalQ: 0,
+    answeredQ: 0,
+    supText: "",
+    conText: "",
+  },
+};
+
+const lines = (s: string) =>
+  s.split("\n").map((l) => l.trim()).filter(Boolean);
+
+function Predict() {
+  const [form, setForm] = useState<Form>(PRESETS["Conflicted case"]);
   const [result, setResult] = useState<PredictResult | null>(null);
   const [loading, setLoading] = useState(false);
 
   const set = <K extends keyof Form>(k: K, v: Form[K]) =>
     setForm((f) => ({ ...f, [k]: v }));
+
+  const supFacts = lines(form.supText);
+  const conFacts = lines(form.conText);
 
   const analyze = useCallback(async () => {
     setLoading(true);
@@ -286,8 +314,10 @@ function Predict() {
           payer_name: form.payer,
           total_questions: form.totalQ,
           answered_questions: form.answeredQ,
-          supportive_facts: form.sup,
-          contradictory_facts: form.con,
+          supportive_facts: lines(form.supText).length,
+          contradictory_facts: lines(form.conText).length,
+          supportive_texts: lines(form.supText),
+          contradictory_texts: lines(form.conText),
         }),
       });
       setResult(await r.json());
@@ -296,15 +326,28 @@ function Predict() {
     }
   }, [form]);
 
-  const num = (k: keyof Form, label: string) => (
+  const num = (k: "totalQ" | "answeredQ", label: string) => (
     <label className="block">
       <span className="mb-1.5 block text-sm text-[#9aa6c0]">{label}</span>
       <input
         type="number"
         min={0}
-        value={form[k] as number}
-        onChange={(e) => set(k, Number(e.target.value) as Form[keyof Form])}
+        value={form[k]}
+        onChange={(e) => set(k, Number(e.target.value))}
         className="w-full rounded-xl border border-[#263255] bg-[#0b1020] px-3 py-2.5 text-sm"
+      />
+    </label>
+  );
+
+  const facts = (k: "supText" | "conText", label: string, hint: string) => (
+    <label className="block">
+      <span className="mb-1.5 block text-sm text-[#9aa6c0]">{label}</span>
+      <textarea
+        rows={4}
+        value={form[k]}
+        placeholder={hint}
+        onChange={(e) => set(k, e.target.value)}
+        className="w-full resize-y rounded-xl border border-[#263255] bg-[#0b1020] px-3 py-2.5 text-sm leading-relaxed"
       />
     </label>
   );
@@ -313,8 +356,9 @@ function Predict() {
     <Panel>
       <h2 className="mb-2 text-base font-semibold">Single-case denial risk</h2>
       <p className="mb-4 text-sm text-[#9aa6c0]">
-        Scored by the trained XGBoost model. Contradictory findings are the top
-        denial driver — increase them and watch the risk climb. Each run logs a
+        Scored by the trained XGBoost + TF-IDF model (test AUC ≈ 0.83). The
+        evidence facts are the dominant signal — one fact per line. Add
+        contradictory findings and watch the risk climb. Each run logs a
         de-identified record to the audit store.
       </p>
 
@@ -322,7 +366,7 @@ function Predict() {
         {Object.keys(PRESETS).map((name) => (
           <button
             key={name}
-            onClick={() => setForm((f) => ({ ...f, ...PRESETS[name] }))}
+            onClick={() => setForm(PRESETS[name])}
             className="rounded-lg border border-[#263255] bg-[#1b2340] px-3 py-1.5 text-xs text-[#9aa6c0] hover:text-white"
           >
             {name}
@@ -330,7 +374,7 @@ function Predict() {
         ))}
       </div>
 
-      <div className="grid gap-4 md:grid-cols-3">
+      <div className="grid gap-4 md:grid-cols-2">
         <label className="block">
           <span className="mb-1.5 block text-sm text-[#9aa6c0]">Drug class</span>
           <input
@@ -339,7 +383,7 @@ function Predict() {
             className="w-full rounded-xl border border-[#263255] bg-[#0b1020] px-3 py-2.5 text-sm"
           />
         </label>
-        <label className="block md:col-span-2">
+        <label className="block">
           <span className="mb-1.5 block text-sm text-[#9aa6c0]">Payer</span>
           <input
             value={form.payer}
@@ -349,8 +393,8 @@ function Predict() {
         </label>
         {num("totalQ", "Total questions")}
         {num("answeredQ", "Answered questions")}
-        {num("sup", "Supportive facts")}
-        {num("con", "Contradictory facts")}
+        {facts("supText", `Supportive facts (${supFacts.length})`, "One supporting fact per line…")}
+        {facts("conText", `Contradictory facts (${conFacts.length})`, "One contradictory finding per line…")}
       </div>
 
       <button

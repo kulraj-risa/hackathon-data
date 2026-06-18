@@ -8,5 +8,8 @@ venv/
 data/
 models/
 
+# Internal RISA Notion export (Medical Necessity Stack) — confidential, do not commit.
+Private & Shared/
+
 # Local editor cruft
 .DS_Store

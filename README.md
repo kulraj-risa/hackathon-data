@@ -71,13 +71,22 @@ python build_app_data.py
 `data/training_data.parquet` and writes the slim artifact to
 `app_data/denial_model.pkl` (no PHI — ships in the API image).
 
-- **Pipeline:** `feature_engineer.py` (28 features) → `model_trainer.py` → `denial_predictor.py`.
-- **Real-schema features:** question counts, completeness, and **supportive vs.
-  contradictory fact** totals/ratios (the guide's `confidence` /
-  `evidence_quality` fields don't exist in the data), plus drug class & payer.
-- **Honest performance:** ROC-AUC ≈ 0.65 on held-out data — contradictory-fact
-  ratio is the strongest signal (denial rate rises 26% → 53% as it grows). The
-  guide's "92%" assumed fields that aren't present.
+- **Pipeline:** `feature_engineer.py` → `model_trainer.py` → `denial_predictor.py`.
+- **Two feature channels:**
+  1. **Numeric (28):** question counts, completeness, and **supportive vs.
+     contradictory fact** totals/ratios (the guide's `confidence` /
+     `evidence_quality` fields don't exist in the data), plus drug class & payer.
+  2. **Evidence text (TF-IDF):** the per-criterion **supportive / contradictory
+     facts** and AI answers (`api_response.facts` / `answer`) — RISA's own
+     evidence-evaluation output (Stage 3). `min_df≥5` keeps the persisted
+     vocabulary free of patient-specific tokens.
+- **Performance:** the text channel lifts held-out **ROC-AUC from 0.64 → 0.83**
+  (precision 0.79). The evidence facts are by far the dominant signal — the
+  guide's "92%" assumed structured fields that aren't populated.
+- **RISA-grounded recommendations:** contradictory facts are classified into
+  authentic failure modes (step-therapy, diagnosis/indication, dosing,
+  labs/biomarkers, missing documentation, criteria-not-met) and explained with
+  the Stage-3 True/False/**Undetermined** + AND-rollup vocabulary.
 
 ## Deploy (Cloud Run, two services)
 

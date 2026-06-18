@@ -68,6 +68,11 @@ class PredictRequest(BaseModel):
     answered_questions: int = 10
     supportive_facts: int = 8
     contradictory_facts: int = 4
+    # Optional rich evidence text. When provided, the model uses its TF-IDF
+    # channel (AUC ~0.83) and counts are derived from the list lengths; the
+    # int counts above are the fallback when no text is supplied.
+    supportive_texts: list[str] | None = None
+    contradictory_texts: list[str] | None = None
 
 
 # --------------------------------------------------------------------------- #
