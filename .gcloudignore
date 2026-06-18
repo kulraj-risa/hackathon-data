@@ -9,6 +9,9 @@ __pycache__/
 data/
 models/
 
+# Confidential internal RISA Notion export — never upload.
+Private & Shared/
+
 # Docs / guide
 *.md
 

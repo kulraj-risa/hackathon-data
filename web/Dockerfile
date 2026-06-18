@@ -2,14 +2,19 @@
 FROM node:22-slim AS deps
 WORKDIR /app
 COPY package.json package-lock.json ./
-RUN npm ci
+# `npm install` (not `npm ci`) so platform-specific optional deps (Next/Tailwind
+# native binaries) resolve correctly inside the Linux image; the macOS-generated
+# lockfile omits some Linux variants which would make the strict `npm ci` fail.
+RUN npm install --no-audit --no-fund
 
 FROM node:22-slim AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-# BACKEND_URL is only needed at runtime (rewrites are evaluated per-request),
-# but Next reads next.config at build too; a placeholder is fine here.
+# Next.js resolves rewrite destinations at BUILD time (baked into the routes
+# manifest), so BACKEND_URL must be present here, not just at runtime.
+ARG BACKEND_URL=https://risa-denial-api-835676485453.us-central1.run.app
+ENV BACKEND_URL=$BACKEND_URL
 RUN npm run build
 
 FROM node:22-slim AS runner
