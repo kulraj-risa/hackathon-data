@@ -1,0 +1,45 @@
+{
+  "total_cases": 10000,
+  "approved": 6000,
+  "denied": 4000,
+  "approval_rate_pct": 60.0,
+  "cases_with_questionnaire": 7717,
+  "avg_questions": 6.9,
+  "top_denial_segments": [
+    {
+      "medication_class": "Brand",
+      "payer_name": "WellCare Medicare Drug Coverage Request Form",
+      "total_cases": 17,
+      "denials": 14,
+      "denial_rate": 82.4
+    },
+    {
+      "medication_class": "Brand",
+      "payer_name": "Fidelis Care",
+      "total_cases": 47,
+      "denials": 35,
+      "denial_rate": 74.5
+    },
+    {
+      "medication_class": "Brand",
+      "payer_name": "OptumRx Medicare Part D General Prior Authorization Request Form",
+      "total_cases": 13,
+      "denials": 9,
+      "denial_rate": 69.2
+    },
+    {
+      "medication_class": "Generic",
+      "payer_name": "WellCare Medicare Drug Coverage Request Form",
+      "total_cases": 15,
+      "denials": 9,
+      "denial_rate": 60.0
+    },
+    {
+      "medication_class": "Brand",
+      "payer_name": "",
+      "total_cases": 10,
+      "denials": 6,
+      "denial_rate": 60.0
+    }
+  ]
+}

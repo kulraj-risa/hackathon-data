@@ -1,0 +1,20 @@
+[
+  {
+    "case_id": "172731b5",
+    "medication_name": NaN,
+    "medication_class": NaN,
+    "payer_name": NaN,
+    "response_status": "Denied",
+    "total_questions": 20,
+    "answered_questions": 20
+  },
+  {
+    "case_id": "7896bea5",
+    "medication_name": NaN,
+    "medication_class": NaN,
+    "payer_name": NaN,
+    "response_status": "Approved",
+    "total_questions": 18,
+    "answered_questions": 18
+  }
+]

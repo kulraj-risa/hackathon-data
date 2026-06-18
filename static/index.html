@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RISA Denial Prevention Engine</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #141a2e;
+      --panel-2: #1b2340;
+      --text: #e7ecf5;
+      --muted: #9aa6c0;
+      --accent: #5b8cff;
+      --red: #ff5d6c;
+      --amber: #ffb454;
+      --green: #3ddc97;
+      --border: #263255;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 20% -10%, #182040, transparent), var(--bg);
+      color: var(--text);
+    }
+    header {
+      padding: 28px 32px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    header h1 { margin: 0; font-size: 24px; }
+    header p { margin: 6px 0 0; color: var(--muted); font-size: 14px; }
+    .tabs {
+      display: flex; gap: 8px; padding: 16px 32px 0; flex-wrap: wrap;
+    }
+    .tab {
+      background: var(--panel); color: var(--muted); border: 1px solid var(--border);
+      padding: 9px 16px; border-radius: 10px; cursor: pointer; font-size: 14px;
+    }
+    .tab.active { background: var(--panel-2); color: var(--text); border-color: var(--accent); }
+    main { padding: 24px 32px 48px; }
+    .panel {
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: 14px; padding: 20px; margin-bottom: 20px;
+    }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 16px; }
+    .metric { background: var(--panel-2); border: 1px solid var(--border); border-radius: 12px; padding: 18px; }
+    .metric .label { color: var(--muted); font-size: 13px; }
+    .metric .value { font-size: 28px; font-weight: 700; margin-top: 6px; }
+    h2 { font-size: 17px; margin: 0 0 14px; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--border); }
+    th { color: var(--muted); font-weight: 600; }
+    .hidden { display: none; }
+    label { display: block; color: var(--muted); font-size: 13px; margin-bottom: 6px; }
+    input {
+      width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border);
+      background: var(--bg); color: var(--text); font-size: 14px;
+    }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    button.primary {
+      margin-top: 16px; background: var(--accent); color: white; border: none;
+      padding: 11px 20px; border-radius: 10px; font-size: 14px; cursor: pointer; font-weight: 600;
+    }
+    button.primary:hover { filter: brightness(1.1); }
+    .badge { display: inline-block; padding: 4px 10px; border-radius: 999px; font-weight: 700; font-size: 12px; }
+    .badge.HIGH { background: rgba(255,93,108,.15); color: var(--red); }
+    .badge.MEDIUM { background: rgba(255,180,84,.15); color: var(--amber); }
+    .badge.LOW { background: rgba(61,220,151,.15); color: var(--green); }
+    .result { margin-top: 18px; }
+    .risk-num { font-size: 40px; font-weight: 800; }
+    ul.recs { margin: 10px 0 0; padding-left: 18px; color: var(--muted); }
+    .muted { color: var(--muted); font-size: 13px; }
+    footer { padding: 20px 32px 40px; color: var(--muted); font-size: 12px; border-top: 1px solid var(--border); }
+    canvas { max-height: 460px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🏥 RISA Denial Prevention Engine</h1>
+    <p>Predict pharmacy PA denials before submission · target 60% → 95% approval</p>
+  </header>
+
+  <div class="tabs">
+    <div class="tab active" data-tab="overview">📊 Overview</div>
+    <div class="tab" data-tab="patterns">🔍 Denial Patterns</div>
+    <div class="tab" data-tab="predict">🎯 Predict</div>
+    <div class="tab" data-tab="audit">🧾 Audit Log</div>
+  </div>
+
+  <main>
+    <!-- Overview -->
+    <section id="overview">
+      <div class="panel">
+        <div class="grid" id="metrics"></div>
+      </div>
+      <div class="panel">
+        <h2>Highest-risk segments (drug class × payer)</h2>
+        <div id="segments"></div>
+      </div>
+    </section>
+
+    <!-- Patterns -->
+    <section id="patterns" class="hidden">
+      <div class="panel">
+        <h2>Denial rate by drug class &amp; payer (top 15)</h2>
+        <canvas id="patternsChart"></canvas>
+      </div>
+      <div class="panel">
+        <h2>Full table</h2>
+        <div id="statsTable"></div>
+      </div>
+    </section>
+
+    <!-- Predict -->
+    <section id="predict" class="hidden">
+      <div class="panel">
+        <h2>Single-case denial risk</h2>
+        <p class="muted">
+          🚧 Inference is a placeholder until the trained model is wired in.
+          Training runs offline (local / Vertex AI); this service only serves.
+          Submitting logs a de-identified record to the audit store.
+        </p>
+        <div class="row">
+          <div>
+            <label>Drug class</label>
+            <input id="medClass" value="Brand" />
+          </div>
+          <div>
+            <label>Payer</label>
+            <input id="payer" value="Aetna Commercial" />
+          </div>
+        </div>
+        <button class="primary" id="analyzeBtn">Analyze</button>
+        <div class="result hidden" id="predictResult">
+          <div>Denial risk: <span class="risk-num" id="riskNum"></span>
+            <span class="badge" id="riskBadge"></span></div>
+          <ul class="recs" id="recs"></ul>
+          <p class="muted" id="loggedNote"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Audit -->
+    <section id="audit" class="hidden">
+      <div class="panel">
+        <h2>Prediction audit trail</h2>
+        <p class="muted" id="auditBackend"></p>
+        <div id="auditTable"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    🏆 RISA Hackathon 2026 · de-identified data · FastAPI on rapids-platform (Cloud Run)
+  </footer>
+
+  <script>
+    const $ = (s) => document.querySelector(s);
+
+    // ---- tab switching ----
+    document.querySelectorAll(".tab").forEach((t) => {
+      t.addEventListener("click", () => {
+        document.querySelectorAll(".tab").forEach((x) => x.classList.remove("active"));
+        t.classList.add("active");
+        ["overview", "patterns", "predict", "audit"].forEach((id) =>
+          $("#" + id).classList.toggle("hidden", id !== t.dataset.tab)
+        );
+        if (t.dataset.tab === "audit") loadAudit();
+      });
+    });
+
+    const fmt = (n) => (n ?? 0).toLocaleString();
+
+    function table(rows, cols) {
+      if (!rows.length) return '<p class="muted">No data.</p>';
+      const head = cols.map((c) => `<th>${c.label}</th>`).join("");
+      const body = rows
+        .map((r) => "<tr>" + cols.map((c) => `<td>${r[c.key] ?? ""}</td>`).join("") + "</tr>")
+        .join("");
+      return `<table><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`;
+    }
+
+    // ---- Overview ----
+    async function loadOverview() {
+      const s = await fetch("/api/summary").then((r) => r.json());
+      if (!s || !Object.keys(s).length) {
+        $("#metrics").innerHTML = '<p class="muted">No app data. Run build_app_data.py locally first.</p>';
+        return;
+      }
+      const cards = [
+        ["Cases analyzed", fmt(s.total_cases)],
+        ["Approval rate", (s.approval_rate_pct ?? 0) + "%"],
+        ["With questionnaire", fmt(s.cases_with_questionnaire)],
+        ["Avg questions / case", s.avg_questions ?? 0],
+      ];
+      $("#metrics").innerHTML = cards
+        .map((c) => `<div class="metric"><div class="label">${c[0]}</div><div class="value">${c[1]}</div></div>`)
+        .join("");
+      $("#segments").innerHTML = table(s.top_denial_segments || [], [
+        { key: "medication_class", label: "Drug class" },
+        { key: "payer_name", label: "Payer" },
+        { key: "total_cases", label: "Cases" },
+        { key: "denials", label: "Denials" },
+        { key: "denial_rate", label: "Denial rate %" },
+      ]);
+    }
+
+    // ---- Patterns ----
+    let patternsChart;
+    async function loadPatterns() {
+      const stats = await fetch("/api/denial-stats").then((r) => r.json());
+      const top = [...stats].sort((a, b) => b.denial_rate - a.denial_rate).slice(0, 15);
+      const labels = top.map((r) => `${r.medication_class ?? "?"} · ${r.payer_name ?? "?"}`);
+      const data = top.map((r) => r.denial_rate);
+      if (patternsChart) patternsChart.destroy();
+      patternsChart = new Chart($("#patternsChart"), {
+        type: "bar",
+        data: {
+          labels,
+          datasets: [{
+            label: "Denial rate (%)",
+            data,
+            backgroundColor: data.map((v) => `rgba(255,93,108,${0.35 + (v / 100) * 0.55})`),
+          }],
+        },
+        options: {
+          indexAxis: "y",
+          plugins: { legend: { display: false } },
+          scales: {
+            x: { ticks: { color: "#9aa6c0" }, grid: { color: "#263255" } },
+            y: { ticks: { color: "#9aa6c0" }, grid: { display: false } },
+          },
+        },
+      });
+      $("#statsTable").innerHTML = table(stats, [
+        { key: "medication_class", label: "Drug class" },
+        { key: "payer_name", label: "Payer" },
+        { key: "total_cases", label: "Cases" },
+        { key: "denials", label: "Denials" },
+        { key: "denial_rate", label: "Denial rate %" },
+      ]);
+    }
+
+    // ---- Predict ----
+    $("#analyzeBtn").addEventListener("click", async () => {
+      const body = {
+        medication_class: $("#medClass").value,
+        payer_name: $("#payer").value,
+        case_id: "demo",
+      };
+      const res = await fetch("/api/predict", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      }).then((r) => r.json());
+      $("#riskNum").textContent = res.denial_risk + "%";
+      const badge = $("#riskBadge");
+      badge.textContent = res.risk_level;
+      badge.className = "badge " + res.risk_level;
+      $("#recs").innerHTML = (res.recommendations || []).map((r) => `<li>${r}</li>`).join("");
+      $("#loggedNote").textContent = `Logged to audit store (record_id=${(res.record_id || "").slice(0, 8)}… · model=${res.model})`;
+      $("#predictResult").classList.remove("hidden");
+    });
+
+    // ---- Audit ----
+    async function loadAudit() {
+      const rows = await fetch("/api/audit").then((r) => r.json());
+      $("#auditBackend").textContent =
+        "Only de-identified prediction metadata is persisted (set STORAGE_BACKEND=firestore|bigquery to switch).";
+      if (!rows.length) {
+        $("#auditTable").innerHTML = '<p class="muted">No predictions logged yet.</p>';
+        return;
+      }
+      const cols = Object.keys(rows[0]).map((k) => ({ key: k, label: k }));
+      $("#auditTable").innerHTML = table(
+        rows.map((r) => ({ ...r, recommendations: Array.isArray(r.recommendations) ? r.recommendations.join("; ") : r.recommendations })),
+        cols
+      );
+    }
+
+    loadOverview();
+    loadPatterns();
+  </script>
+</body>
+</html>

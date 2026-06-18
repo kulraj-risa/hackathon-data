@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+.env
+
+# Training data may contain questionnaire/clinical text (PHI) — NEVER commit.
+data/
+models/
+
+# Local editor cruft
+.DS_Store

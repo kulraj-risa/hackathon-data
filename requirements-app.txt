@@ -1,0 +1,6 @@
+# Slim runtime deps for the hosted service (Cloud Run container).
+# Uses precomputed de-identified data; no BigQuery/ML deps needed at serve time.
+fastapi>=0.110
+uvicorn[standard]>=0.29
+pandas>=2.2
+pyarrow>=16.0

@@ -1,0 +1,29 @@
+medication_class,payer_name,total_cases,denials,denial_rate
+Brand,WellCare Medicare Drug Coverage Request Form,17,14,82.4
+Brand,Fidelis Care,47,35,74.5
+Brand,OptumRx Medicare Part D General Prior Authorization Request Form,13,9,69.2
+Generic,WellCare Medicare Drug Coverage Request Form,15,9,60.0
+Brand,,10,6,60.0
+Brand,Humana Medicare,16,9,56.3
+Brand,Aetna Commercial,13,7,53.8
+Generic,OptumRx Commercial,15,8,53.3
+Generic,Express Scripts General Request Form,14,7,50.0
+Generic,OptumRx Medicare Part D General Prior Authorization Request Form,12,6,50.0
+Brand,EmblemHealth Medicare Part D,11,5,45.5
+Brand,OptumRx Medicare,29,13,44.8
+Brand,OptumRx Commercial,45,20,44.4
+Generic,Caremark Medicare,27,12,44.4
+Generic,Caremark Medicare Coverage Determination Request Form,19,8,42.1
+,,9362,3802,40.6
+Brand,WellCare Medicare,19,7,36.8
+Generic,CVS Caremark Non-Medicare,19,7,36.8
+Brand,Caremark Medicare Coverage Determination Request Form,22,8,36.4
+Brand,Express Scripts General Request Form,37,12,32.4
+Brand,CVS Caremark Non-Medicare Formulary Exception / Prior Authorization Request Form,33,10,30.3
+Brand,OptumRx Commercial Prior Authorization Request Form,10,3,30.0
+Brand,CVS Caremark Non-Medicare,95,25,26.3
+Brand,Caremark Medicare,108,28,25.9
+Brand,Express Scripts,37,7,18.9
+Brand,Cigna Medication,17,3,17.6
+Brand,NYRx Medicaid,19,0,0.0
+Generic,NYRx Medicaid,38,0,0.0

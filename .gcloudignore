@@ -1,0 +1,18 @@
+# Controls what `gcloud run deploy --source .` uploads to Cloud Build.
+# Keep the upload small and free of PHI/large artifacts.
+.git/
+venv/
+__pycache__/
+*.pyc
+
+# Local training data may contain questionnaire/clinical text — never upload.
+data/
+models/
+
+# Docs / guide
+*.md
+
+# Local-only build + training scripts (not needed at serve time)
+build_app_data.py
+data_loader.py
+.env
