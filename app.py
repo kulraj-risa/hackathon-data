@@ -44,6 +44,10 @@ def _load_summary() -> dict:
     return _read_json("summary.json", {})
 
 
+def _load_insights() -> dict:
+    return _read_json("insights.json", {})
+
+
 def _load_samples() -> list[dict]:
     return _read_json("sample_cases.json", [])
 
@@ -84,7 +88,7 @@ def root() -> dict:
     return {
         "service": "risa-denial-api",
         "docs": "/docs",
-        "endpoints": ["/api/summary", "/api/denial-stats", "/api/samples", "/api/predict", "/api/audit"],
+        "endpoints": ["/api/summary", "/api/insights", "/api/denial-stats", "/api/samples", "/api/predict", "/api/audit"],
     }
 
 
@@ -97,6 +101,12 @@ def healthz() -> dict:
 @app.get("/api/summary")
 def api_summary() -> dict:
     return _load_summary()
+
+
+@app.get("/api/insights")
+def api_insights() -> dict:
+    """Aggregate denial-risk insights derived from the trained model + data."""
+    return _load_insights()
 
 
 @app.get("/api/denial-stats")

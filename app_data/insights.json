@@ -1,0 +1,223 @@
+{
+  "denial_by_contradictions": [
+    {
+      "cases": 4121,
+      "denials": 1371,
+      "denial_rate": 33.3,
+      "bucket": "0"
+    },
+    {
+      "cases": 1332,
+      "denials": 437,
+      "denial_rate": 32.8,
+      "bucket": "1"
+    },
+    {
+      "cases": 1045,
+      "denials": 397,
+      "denial_rate": 38.0,
+      "bucket": "2"
+    },
+    {
+      "cases": 1457,
+      "denials": 660,
+      "denial_rate": 45.3,
+      "bucket": "3-4"
+    },
+    {
+      "cases": 1510,
+      "denials": 823,
+      "denial_rate": 54.5,
+      "bucket": "5-8"
+    },
+    {
+      "cases": 535,
+      "denials": 312,
+      "denial_rate": 58.3,
+      "bucket": "9+"
+    }
+  ],
+  "denial_by_supportive": [
+    {
+      "cases": 2323,
+      "denials": 904,
+      "denial_rate": 38.9,
+      "bucket": "0"
+    },
+    {
+      "cases": 590,
+      "denials": 251,
+      "denial_rate": 42.5,
+      "bucket": "1-2"
+    },
+    {
+      "cases": 1395,
+      "denials": 440,
+      "denial_rate": 31.5,
+      "bucket": "3-5"
+    },
+    {
+      "cases": 1810,
+      "denials": 682,
+      "denial_rate": 37.7,
+      "bucket": "6-10"
+    },
+    {
+      "cases": 3882,
+      "denials": 1723,
+      "denial_rate": 44.4,
+      "bucket": "11+"
+    }
+  ],
+  "denial_by_completeness": [
+    {
+      "cases": 0,
+      "denials": 0,
+      "denial_rate": 0.0,
+      "bucket": "<50%"
+    },
+    {
+      "cases": 0,
+      "denials": 0,
+      "denial_rate": 0.0,
+      "bucket": "50-80%"
+    },
+    {
+      "cases": 0,
+      "denials": 0,
+      "denial_rate": 0.0,
+      "bucket": "80-99%"
+    },
+    {
+      "cases": 7717,
+      "denials": 3117,
+      "denial_rate": 40.4,
+      "bucket": "100%"
+    }
+  ],
+  "risk_up_terms": [
+    {
+      "term": "preferred brand",
+      "cases": 294,
+      "denial_rate": 96.9,
+      "lift": 56.9
+    },
+    {
+      "term": "unspecified ans",
+      "cases": 589,
+      "denial_rate": 84.6,
+      "lift": 44.6
+    },
+    {
+      "term": "coverage",
+      "cases": 234,
+      "denial_rate": 73.9,
+      "lift": 33.9
+    },
+    {
+      "term": "result",
+      "cases": 209,
+      "denial_rate": 71.8,
+      "lift": 31.8
+    },
+    {
+      "term": "venofer",
+      "cases": 598,
+      "denial_rate": 70.9,
+      "lift": 30.9
+    },
+    {
+      "term": "contraindications",
+      "cases": 1460,
+      "denial_rate": 67.5,
+      "lift": 27.5
+    },
+    {
+      "term": "additional medication",
+      "cases": 784,
+      "denial_rate": 65.7,
+      "lift": 25.7
+    },
+    {
+      "term": "additional",
+      "cases": 1769,
+      "denial_rate": 60.4,
+      "lift": 20.4
+    },
+    {
+      "term": "deficiency anemia",
+      "cases": 933,
+      "denial_rate": 59.5,
+      "lift": 19.5
+    },
+    {
+      "term": "deficiency",
+      "cases": 1012,
+      "denial_rate": 59.0,
+      "lift": 19.0
+    }
+  ],
+  "risk_down_terms": [
+    {
+      "term": "alternative available",
+      "cases": 318,
+      "denial_rate": 0.6,
+      "lift": -39.4
+    },
+    {
+      "term": "acceptable alternative",
+      "cases": 320,
+      "denial_rate": 0.9,
+      "lift": -39.1
+    },
+    {
+      "term": "substance",
+      "cases": 401,
+      "denial_rate": 1.7,
+      "lift": -38.3
+    },
+    {
+      "term": "allowance",
+      "cases": 331,
+      "denial_rate": 7.6,
+      "lift": -32.4
+    },
+    {
+      "term": "on formulary",
+      "cases": 135,
+      "denial_rate": 13.3,
+      "lift": -26.7
+    },
+    {
+      "term": "cell",
+      "cases": 370,
+      "denial_rate": 20.0,
+      "lift": -20.0
+    },
+    {
+      "term": "pens",
+      "cases": 668,
+      "denial_rate": 20.7,
+      "lift": -19.3
+    },
+    {
+      "term": "an adult",
+      "cases": 165,
+      "denial_rate": 23.6,
+      "lift": -16.4
+    }
+  ],
+  "base_denial_rate": 40.0,
+  "model": {
+    "roc_auc": 0.83,
+    "accuracy": 0.755,
+    "precision": 0.787,
+    "recall": 0.532,
+    "f1": 0.635,
+    "n_train": 8000,
+    "n_test": 2000,
+    "numeric_features": 28,
+    "vocab_size": 3000,
+    "baseline_auc": 0.642
+  }
+}
