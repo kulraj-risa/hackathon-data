@@ -7,3 +7,6 @@ models/
 *.md
 RISA-HACKATHON-COMPLETE-GUIDE.md
 .env
+
+# Frontend is a separate Cloud Run service (deployed from web/)
+web/

@@ -1,8 +1,9 @@
-"""RISA Denial Prevention Engine - FastAPI app (no Streamlit).
+"""RISA Denial Prevention Engine - FastAPI API (no Streamlit).
 
-Serves a small JSON API + a static single-page frontend. Runs entirely on
-precomputed, de-identified data baked into the container (app_data/), so the
-hosted service never touches live PHI or the prod BigQuery project.
+Serves a small JSON API consumed by the Next.js frontend (see web/). Runs
+entirely on precomputed, de-identified data baked into the container
+(app_data/), so the hosted service never touches live PHI or the prod
+BigQuery project.
 
 Inference (the Predict endpoint) is a placeholder until the trained model
 (models/denial_predictor_final.pkl) is wired in. Model TRAINING happens
@@ -17,15 +18,12 @@ from typing import Any
 
 import pandas as pd
 from fastapi import FastAPI
-from fastapi.responses import FileResponse
-from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 from storage import get_store
 
 BASE_DIR = Path(__file__).parent
 APP_DATA = BASE_DIR / "app_data"
-STATIC_DIR = BASE_DIR / "static"
 
 app = FastAPI(
     title="RISA Denial Prevention Engine",
@@ -71,6 +69,16 @@ class PredictRequest(BaseModel):
 # --------------------------------------------------------------------------- #
 # API routes
 # --------------------------------------------------------------------------- #
+@app.get("/")
+def root() -> dict:
+    """API index. The UI is the separate Next.js service (see web/)."""
+    return {
+        "service": "risa-denial-api",
+        "docs": "/docs",
+        "endpoints": ["/api/summary", "/api/denial-stats", "/api/samples", "/api/predict", "/api/audit"],
+    }
+
+
 @app.get("/healthz")
 def healthz() -> dict:
     """Liveness probe for Cloud Run."""
@@ -120,14 +128,3 @@ def api_predict(req: PredictRequest) -> dict:
     }
     rid = get_store().log_prediction(result)
     return {**result, "record_id": rid, "model": "placeholder"}
-
-
-# --------------------------------------------------------------------------- #
-# Frontend (static SPA). Mounted last so it doesn't shadow /api routes.
-# --------------------------------------------------------------------------- #
-@app.get("/")
-def index() -> FileResponse:
-    return FileResponse(STATIC_DIR / "index.html")
-
-
-app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")

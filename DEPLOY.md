@@ -1,9 +1,14 @@
 # Deploying the RISA app to `rapids-platform` (Cloud Run)
 
-The app is a **FastAPI** service (no Streamlit) hosted on **Cloud Run**. It serves
-**precomputed, de-identified data** baked into the container (`app_data/`). It does
-**not** query the prod PHI table or the prod BigQuery project at serve time — this
-avoids cross-project IAM and keeps PHI out of the hosted app.
+The app is **two Cloud Run services** (no Streamlit):
+
+1. **API** — FastAPI (`app.py`), serves a JSON API + model inference over
+   **precomputed, de-identified data** baked into the container (`app_data/`).
+2. **Frontend** — Next.js (`web/`), serves the UI and proxies `/api/*` to the API
+   via the `BACKEND_URL` env var (a `rewrites()` rule — no CORS).
+
+Neither service queries the prod PHI table or the prod BigQuery project at serve
+time — this avoids cross-project IAM and keeps PHI out of the hosted app.
 
 ## Where does model TRAINING happen?
 
@@ -29,8 +34,11 @@ Local / Vertex AI  ── TRAIN ──>  models/denial_predictor_final.pkl   (XG
       ▼                                    ▼
   app_data/  (de-identified aggregates) ──┐
                                           ▼
-Cloud Build (gcloud run deploy --source .) ──> Cloud Run service (rapids-platform)
-  Dockerfile → FastAPI app.py + static/ + storage.py + app_data/   ── SERVE / inference
+Cloud Build (gcloud run deploy --source .) ──> Cloud Run: API (FastAPI)
+  Dockerfile → app.py + storage.py + app_data/   ── SERVE / inference
+                                          │  ▲ /api/* (BACKEND_URL)
+                                          │  │
+                              Cloud Run: Frontend (Next.js, web/)  ── UI
                                           │
                                           ▼
         storage.py (pluggable): local JSON | Firestore | BigQuery
@@ -89,18 +97,36 @@ Only de-identified prediction metadata is persisted (allow-list enforced in
 ## Run locally
 
 ```bash
+# API (port 8000)
 venv/bin/pip install -r requirements-app.txt
-venv/bin/uvicorn app:app --reload --port 8080
-# open http://localhost:8080  (API docs at /docs, health at /healthz)
+venv/bin/uvicorn app:app --reload --port 8000   # docs at /docs, health at /healthz
+
+# Frontend (port 3000) — separate terminal
+cd web && npm install
+BACKEND_URL=http://127.0.0.1:8000 npm run dev    # open http://localhost:3000
+```
+
+## Deploy both services
+
+```bash
+# 1) API
+./deploy.sh
+
+# 2) Frontend — set BACKEND_URL to the API URL printed above
+cd web
+gcloud run deploy risa-denial-web --source . --project rapids-platform \
+  --region us-central1 --allow-unauthenticated --port 8080 \
+  --set-env-vars "BACKEND_URL=https://<api-service-url>"
 ```
 
 ## Status
 
-- [x] Container + deploy pipeline ready (`Dockerfile`, `deploy.sh`)
-- [x] FastAPI app runs locally (health 200) — Streamlit removed
+- [x] API container + deploy pipeline ready (`Dockerfile`, `deploy.sh`)
+- [x] Next.js frontend (`web/`) builds + proxies to the API — Streamlit removed
+- [x] Both run locally end-to-end (API health 200, proxied `/api/*` 200)
 - [x] De-identified app data generated
 - [ ] `gcloud auth login` + API enablement (needs you, interactive)
-- [ ] First Cloud Run deploy
+- [ ] First Cloud Run deploy (API, then frontend with `BACKEND_URL`)
 - [ ] Wire real model into the Predict endpoint (after `model_trainer.py`)
 - [ ] Choose persistent storage backend (Firestore vs BigQuery)
 ```

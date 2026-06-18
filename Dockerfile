@@ -1,4 +1,5 @@
-# FastAPI service for Cloud Run. Python 3.12 = stable wheels for all deps.
+# FastAPI API service for Cloud Run. Python 3.12 = stable wheels for all deps.
+# The UI is a separate Next.js service (see web/Dockerfile).
 FROM python:3.12-slim
 
 ENV PYTHONUNBUFFERED=1 \
@@ -11,9 +12,8 @@ WORKDIR /app
 COPY requirements-app.txt .
 RUN pip install --no-cache-dir -r requirements-app.txt
 
-# App code + frontend + precomputed de-identified data (NO PHI in the image).
+# API code + precomputed de-identified data (NO PHI in the image).
 COPY app.py storage.py config.py ./
-COPY static/ ./static/
 COPY app_data/ ./app_data/
 
 EXPOSE 8080

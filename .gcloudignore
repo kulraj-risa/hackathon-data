@@ -16,3 +16,6 @@ models/
 build_app_data.py
 data_loader.py
 .env
+
+# Frontend is a separate Cloud Run service (deployed from web/)
+web/

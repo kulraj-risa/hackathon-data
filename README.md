@@ -3,7 +3,17 @@
 Predicts pharmacy Prior-Authorization (PA) denials **before** submission so staff
 can fix documentation gaps and lift approval from ~60% → 95%.
 
-> Stack: **Python + FastAPI** (no Streamlit) · XGBoost · BigQuery (offline) · Cloud Run
+> Stack: **Next.js** (frontend) + **FastAPI** (API/inference) · XGBoost · BigQuery (offline) · Cloud Run
+
+## Two services
+
+| Service | Tech | Role |
+|---------|------|------|
+| `web/` | Next.js 16 + Tailwind + Recharts | UI; proxies `/api/*` to the backend |
+| root (`app.py`) | FastAPI + uvicorn | JSON API, audit store, model inference |
+
+The browser only talks to Next.js; Next proxies `/api/*` to FastAPI via
+`BACKEND_URL` (a `rewrites()` rule), so there's no CORS to manage.
 
 ## Where training vs. serving happen
 
@@ -17,24 +27,35 @@ Training never runs inside the Cloud Run service. See [`DEPLOY.md`](DEPLOY.md).
 ## Layout
 
 ```
-app.py              FastAPI service (JSON API + static SPA)  ← serving
-static/index.html   Frontend (vanilla JS + Chart.js, no build step)
+app.py              FastAPI API (JSON + inference)        ← serving
 storage.py          Pluggable audit store (local JSON | Firestore | BigQuery)
 config.py           Project / model config
-data_loader.py      BigQuery extraction (Queries 1–3)  ← local/offline only
-build_app_data.py   Generates de-identified app_data/   ← local/offline only
+data_loader.py      BigQuery extraction (Queries 1–3)     ← local/offline only
+build_app_data.py   Generates de-identified app_data/      ← local/offline only
 app_data/           Precomputed de-identified aggregates baked into the image
-Dockerfile          Cloud Run container (uvicorn)
-deploy.sh           gcloud run deploy --source .
+Dockerfile          API container (uvicorn)
+deploy.sh           gcloud run deploy (API) --source .
+web/                Next.js frontend
+  src/app/page.tsx  Dashboard (Overview / Patterns / Predict / Audit)
+  next.config.ts    Proxies /api/* -> BACKEND_URL (FastAPI)
+  Dockerfile        Frontend container (standalone Next server)
 ```
 
 ## Run locally
 
+Two terminals:
+
 ```bash
+# 1) API backend (port 8000)
 python3 -m venv venv && source venv/bin/activate
 pip install -r requirements-app.txt
-uvicorn app:app --reload --port 8080
-# http://localhost:8080  ·  docs at /docs  ·  health at /healthz
+uvicorn app:app --reload --port 8000
+
+# 2) Frontend (port 3000, proxies /api -> :8000)
+cd web
+npm install
+BACKEND_URL=http://127.0.0.1:8000 npm run dev
+# open http://localhost:3000   (API docs at http://localhost:8000/docs)
 ```
 
 To regenerate de-identified data (needs prod BigQuery access):
@@ -44,10 +65,17 @@ pip install -r requirements.txt
 python build_app_data.py
 ```
 
-## Deploy
+## Deploy (Cloud Run, two services)
 
 ```bash
-./deploy.sh   # builds + deploys to Cloud Run on rapids-platform
+# 1) API
+./deploy.sh                       # deploys FastAPI -> prints API URL
+
+# 2) Frontend (point it at the API URL from step 1)
+cd web
+gcloud run deploy risa-denial-web --source . --project rapids-platform \
+  --region us-central1 --allow-unauthenticated --port 8080 \
+  --set-env-vars "BACKEND_URL=https://<api-service-url>"
 ```
 
 ## API
