@@ -5,8 +5,8 @@
     "version": "1.0.0",
     "apiVersion": "1.0",
     "mainClass": "ai.risa.denial.DenialPlugin",
-    "type": "mixed",
-    "description": "Predicts pharmacy PA denial risk before submission (XGBoost + evidence-text model, test AUC 0.83) and surfaces the fixes. Adds a 'Denial Risk' co-pilot panel and an embedded dashboard tab to the PriorAuth workspace.",
+    "type": "tab",
+    "description": "Embeds the RISA Denial Prevention dashboard (XGBoost + evidence-text model, test AUC 0.83) as a tab in the PriorAuth workspace.",
     "author": "RISA Hackathon",
     "url": "https://risa-denial-web-835676485453.us-central1.run.app",
     "sharedPackages": [
@@ -14,14 +14,6 @@
     ],
     "sandbox": {
         "enableSandbox": true,
-        "maxThreads": 4,
-        "heartbeatIntervalMs": 10000,
         "maxRestartAttempts": 3
-    },
-    "panel": {
-        "icon": "Warning",
-        "location": "right.top.top",
-        "order": 10,
-        "displayName": "Denial Risk"
     }
 }
