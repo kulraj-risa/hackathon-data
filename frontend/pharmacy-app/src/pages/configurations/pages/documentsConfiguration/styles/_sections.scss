@@ -1,0 +1,274 @@
+.configuration-browser {
+  .section {
+    border-radius: 8px;
+    background-color: #fff;
+
+    // New styles for the level row layout
+    .level-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      h3 {
+        margin: 0;
+        min-width: 150px;
+        color: #2c3e50;
+        font-weight: 600;
+        font-size: 1.3rem;
+      }
+
+      .select-container {
+        flex: 1;
+
+        .config-select {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    // Styles for the combined level2 and level3 row
+    .levels-container {
+      width: 100%;
+    }
+
+    .level-row-combined {
+      display: flex;
+      gap: 30px;
+      width: 100%;
+
+      .level-item {
+        flex: 1;
+        min-width: 0; // Helps with text truncation
+
+        h3 {
+          margin-bottom: 10px;
+          white-space: nowrap;
+        }
+
+        // Special styling for the third column (Version in Use)
+        &:nth-child(3) {
+          min-width: 200px;
+        }
+      }
+    }
+
+    // Version controls - button and dropdown
+    .version-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+
+      .config-select-wrapper {
+        display: flex;
+        flex: 1;
+        align-items: center;
+
+        .config-select {
+          width: 100%;
+        }
+      }
+
+      .config-select {
+        margin-bottom: 0;
+        width: 100%;
+      }
+
+      .no-data-message {
+        flex: 1;
+        margin-right: 10px;
+        margin-bottom: 0;
+        color: #6c757d;
+        font-style: italic;
+      }
+
+      .loading-button {
+        display: flex;
+        flex-shrink: 0;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #e9ecef;
+        border-radius: 6px;
+        background-color: #f8f9fa;
+        padding: 0 16px;
+        min-width: 80px;
+        height: 36px;
+      }
+
+      // Style for the Add New Version button
+      button {
+        flex-shrink: 0;
+        min-width: auto;
+        white-space: nowrap;
+
+        &[buttontype="primary"] {
+          position: relative !important;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+          box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3) !important;
+          border: none !important;
+          border-radius: 6px !important;
+          background: linear-gradient(
+            135deg,
+            #667eea 0%,
+            #764ba2 100%
+          ) !important;
+          padding: 8px 16px !important;
+          overflow: hidden !important;
+          color: #ffffff !important;
+          font-weight: 600 !important;
+          font-size: 0.9rem !important;
+
+          i.fas.fa-plus {
+            margin-right: 6px !important;
+            font-weight: 600 !important;
+            font-size: 0.8rem !important;
+          }
+
+          &::before {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            transition: left 0.5s;
+            background: linear-gradient(
+              90deg,
+              transparent,
+              rgba(255, 255, 255, 0.2),
+              transparent
+            );
+            width: 100%;
+            height: 100%;
+            content: "";
+          }
+
+          &:hover {
+            transform: translateY(-1px) !important;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4) !important;
+            background: linear-gradient(
+              135deg,
+              #5a6fd8 0%,
+              #6a4190 100%
+            ) !important;
+
+            &::before {
+              left: 100%;
+            }
+          }
+
+          &:active {
+            transform: translateY(0) !important;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3) !important;
+          }
+        }
+
+        &[buttontype="secondary"] {
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+          box-shadow: 0 2px 4px rgba(102, 126, 234, 0.1) !important;
+          border: 2px solid #667eea !important;
+          border-radius: 6px !important;
+          background: #ffffff !important;
+          padding: 6px 14px !important;
+          color: #667eea !important;
+          font-weight: 600 !important;
+          font-size: 0.9rem !important;
+
+          i.fas.fa-plus {
+            margin-right: 6px !important;
+            font-weight: 600 !important;
+            font-size: 0.8rem !important;
+          }
+
+          &:hover {
+            transform: translateY(-1px) !important;
+            box-shadow: 0 4px 8px rgba(102, 126, 234, 0.2) !important;
+            background: #667eea !important;
+            color: #ffffff !important;
+          }
+
+          &:active {
+            transform: translateY(0) !important;
+            box-shadow: 0 2px 4px rgba(102, 126, 234, 0.1) !important;
+          }
+        }
+      }
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #eaeaea;
+      padding-bottom: 15px;
+
+      .header-content {
+        flex: 1;
+      }
+
+      h3 {
+        display: flex;
+        align-items: center;
+        margin: 0;
+        color: #2c3e50;
+        font-weight: 600;
+        font-size: 1.3rem;
+
+        &:before {
+          display: none;
+        }
+
+        i {
+          margin-right: 10px;
+        }
+      }
+    }
+
+    .section-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .section-actions {
+      display: flex;
+      gap: 10px;
+      margin-left: 10px;
+    }
+  }
+
+  .content-card {
+    transition: all 0.2s ease;
+    margin-top: 15px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    padding: 20px;
+
+    &:hover {
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  // Scrollable details section
+  .scrollable-details {
+    max-height: 550px;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      border-radius: 4px;
+      background: #f1f1f1;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 4px;
+      background: #c1c1c1;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: #a0a0a0;
+    }
+  }
+}

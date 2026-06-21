@@ -1,0 +1,18 @@
+.portal-dropdown {
+  position: absolute;
+  z-index: 9999;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e5e7eb;
+  border-radius: 0.3125rem;
+  background: white;
+  max-height: 10rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.portal-dropdown-container {
+  position: relative;
+  z-index: 1000;
+}

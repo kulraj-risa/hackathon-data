@@ -1,0 +1,49 @@
+@use "risa-oasis-ui_v2/dist/library/colors" as colors;
+@use "risa-oasis-ui_v2/dist/library/mixins" as mixins;
+
+div.pagination-table-container {
+  @include mixins.tiny-semiBold(colors.$primaryGray2);
+  @include mixins.row-flex(center, center, 0.75rem);
+
+  .previous,
+  .next {
+    @include mixins.row-flex(center, center, 0.25rem);
+    border: 1px solid colors.$primaryGray15;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    max-width: fit-content;
+    height: 2rem;
+
+    &:not(.disabled):hover {
+      cursor: pointer;
+      background-color: colors.$primaryGray15;
+    }
+
+    &.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+  }
+
+  .pages {
+    @include mixins.tiny-semiBold(colors.$primaryGray2);
+    @include mixins.row-flex(center, center);
+    border: 1px solid colors.$primaryGray15;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    min-width: 2rem;
+    max-width: fit-content;
+    height: 2rem;
+
+    &.active {
+      @include mixins.tiny-semiBold(colors.$white);
+      background-color: colors.$primaryGray2;
+    }
+
+    &:not(.active):hover {
+      cursor: pointer;
+      background-color: colors.$primaryGray15;
+    }
+  }
+}

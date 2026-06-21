@@ -1,24 +1,40 @@
 # Controls what `gcloud run deploy --source .` uploads to Cloud Build.
-# Keep the upload small and free of PHI/large artifacts.
+# Keep the upload small and free of PHI / large artifacts.
 .git/
 venv/
 __pycache__/
 *.pyc
+*.egg-info/
+.DS_Store
 
-# Local training data may contain questionnaire/clinical text — never upload.
+# Local training data / models may contain clinical text — never upload.
 data/
 models/
 
-# Confidential internal RISA Notion export — never upload.
+# Confidential internal RISA Notion export + loose source docs — never upload.
 Private & Shared/
+*.pdf
+*.png
 
-# Docs / guide
+# Offline pipelines, tools, scripts, docs — not needed at serve time.
+pipelines/
+tools/
+scripts/
+docs/
 *.md
+!README.md
 
-# Local-only build + training scripts (not needed at serve time)
-build_app_data.py
-data_loader.py
-.env
-
-# Frontend is a separate Cloud Run service (deployed from web/)
+# Other apps / frontends / vendored platform — separate from the engine build.
+frontend/
 web/
+pharmacy-app/
+pharmacy-dashboard-demo/
+one-risa-1/
+rpa_tools/
+boss-plugin/
+papers/
+extraction/
+
+# Local env
+.env
+.env.*

@@ -1,0 +1,269 @@
+[
+  {
+    "patient": "Emerson Larsen",
+    "dob": "1995-02-08",
+    "member_id": "MBR-1043607",
+    "cmm_id": "CMM143607",
+    "drug": "Wegovy",
+    "medication": "Wegovy 1.5MG tablets",
+    "medication_class": "Brand",
+    "payer_name": "Humana",
+    "total_questions": 17,
+    "answered_questions": 17,
+    "supportive_texts": [
+      "FR#37 directly addresses this question.",
+      "DS$FR#5 (drug-specific for Wegovy) mandates answering 'Yes' that Wegovy is used with reduced-calorie diet and increased physical activity.",
+      "DOB 10/20/1965 documented.",
+      "As of 2026-06-12 the patient is 60 years old.",
+      "The record shows Wegovy was initiated on 6/11/2026 with instructions to take 1 tablet daily."
+    ],
+    "contradictory_texts": [
+      "No values between 27\u201330 kg/m\u00b2.",
+      "No evidence of a baseline BMI between 35 and <40.",
+      "No prior weight-loss drug documented.",
+      "The thinking process does not confirm that chart notes showing baseline BMI were actually submitted.",
+      "The prescription is for Wegovy 1.5 mg tablets taken by mouth once daily."
+    ],
+    "expected_decision": "REVIEW",
+    "expected_risk": 52.2
+  },
+  {
+    "patient": "Quinn Prescott",
+    "dob": "1977-06-15",
+    "member_id": "MBR-1153389",
+    "cmm_id": "CMM253389",
+    "drug": "Tadalafil",
+    "medication": "Tadalafil 5MG tablets",
+    "medication_class": "Generic",
+    "payer_name": "BCBS Federal",
+    "total_questions": 5,
+    "answered_questions": 5,
+    "supportive_texts": [
+      "This is an acknowledgement attestation.",
+      "Per FR#6, acknowledgement questions are always answered affirmatively.",
+      "Per FR#24, certify not for tiering exception.",
+      "FR#12 requires answering 'No' to the prescriber attestation that the standard timeframe will not jeopardize the patient.",
+      "FR#4 mandates selecting expedited when given the choice."
+    ],
+    "contradictory_texts": [
+      "No documentation of prior trials, intolerance, or contraindications to any alpha blockers.",
+      "Allergies listed do not include alpha blockers."
+    ],
+    "expected_decision": "BLOCK",
+    "expected_risk": 82.8
+  },
+  {
+    "patient": "Avery Nolan",
+    "dob": "1985-01-16",
+    "member_id": "MBR-8360477",
+    "cmm_id": "CMM260477",
+    "drug": "Tadalafil",
+    "medication": "Tadalafil 20MG tablets",
+    "medication_class": "Generic",
+    "payer_name": "BCBS Federal",
+    "total_questions": 4,
+    "answered_questions": 4,
+    "supportive_texts": [
+      "FR#4 mandates selecting expedited review whenever given the choice between standard and expedited review.",
+      "FR#34 directly applies when asked whether all formulary agents would be ineffective.",
+      "The fixed response rule mandates answering \"Yes\".",
+      "No documentation of adverse reactions to formulary alternatives.",
+      "Allergy list is negative."
+    ],
+    "contradictory_texts": [],
+    "expected_decision": "AUTO_SUBMIT",
+    "expected_risk": 21.5
+  },
+  {
+    "patient": "Skyler Holloway",
+    "dob": "1967-02-16",
+    "member_id": "MBR-2248379",
+    "cmm_id": "CMM448379",
+    "drug": "Repatha",
+    "medication": "Repatha SureClick 140MG/ML auto-injectors",
+    "medication_class": "Brand",
+    "payer_name": "Fidelis Care",
+    "total_questions": 9,
+    "answered_questions": 9,
+    "supportive_texts": [
+      "The chart lists E78.2 Mixed hyperlipidemia as an active diagnosis.",
+      "Repatha requested for hyperlipidemia.",
+      "Chart documents diagnosis E78.2 Mixed hyperlipidemia.",
+      "The medication list and provider notes do not show active or prior Repatha use.",
+      "The only Repatha entry corresponds to the new prescription placed on 2026-06-05."
+    ],
+    "contradictory_texts": [
+      "The thinking process does not provide any specific information about the patient's condition regarding statin-associated muscle symptoms (SAMs), failed statin therapy, or statin intolerance.",
+      "No clinical rationale documented in provided records",
+      "Refer MD notes \u2014 SEE ATTACHED"
+    ],
+    "expected_decision": "BLOCK",
+    "expected_risk": 67.6
+  },
+  {
+    "patient": "Casey Ellison",
+    "dob": "1963-01-15",
+    "member_id": "MBR-2399875",
+    "cmm_id": "CMM599875",
+    "drug": "Testosterone",
+    "medication": "Testosterone Cypionate 200MG/ML intramuscular solution",
+    "medication_class": "Generic",
+    "payer_name": "Aetna Commercial",
+    "total_questions": 5,
+    "answered_questions": 5,
+    "supportive_texts": [
+      "The prescription is for testosterone cypionate to treat documented hypogonadism (E29.1).",
+      "Low testosterone levels are noted.",
+      "There is no indication it is for athletic performance enhancement.",
+      "The medical record repeatedly lists Gender: M (e.g., Quest report).",
+      "The notes mention \u201c67M\u201d."
+    ],
+    "contradictory_texts": [
+      "There is no evidence of ongoing current administration of testosterone.",
+      "Other low values (e.g., 259 ng/dL in 2025; 225 ng/dL in 2026) were obtained after prior TRT or during treatment breaks, not prior to any TRT initiation.",
+      "Two pre-treatment measurements are not documented."
+    ],
+    "expected_decision": "REVIEW",
+    "expected_risk": 53.7
+  },
+  {
+    "patient": "Emerson Prescott",
+    "dob": "1959-12-06",
+    "member_id": "MBR-2463771",
+    "cmm_id": "CMM663771",
+    "drug": "Udenyca",
+    "medication": "Udenyca (pegfilgrastim-cbqv) 6MG/0.6ML syringes",
+    "medication_class": "Brand",
+    "payer_name": "Humana",
+    "total_questions": 4,
+    "answered_questions": 4,
+    "supportive_texts": [
+      "When given the choice between standard and expedited review, strictly select expedited.",
+      "FR#34 explicitly states: \"If asked whether all formulary agents would be ineffective, always answer 'Yes'.\"",
+      "There is no documentation of adverse reactions to formulary G-CSF options.",
+      "The patient has NKDA (No Known Drug Allergies).",
+      "The patient has prior/ongoing use orders for filgrastim products (Neupogen, Zarxio) without noted intolerance."
+    ],
+    "contradictory_texts": [],
+    "expected_decision": "AUTO_SUBMIT",
+    "expected_risk": 17.0
+  },
+  {
+    "patient": "Quinn Ingram",
+    "dob": "2001-07-20",
+    "member_id": "MBR-8842233",
+    "cmm_id": "CMM742233",
+    "drug": "Wegovy",
+    "medication": "Wegovy 0.5MG/0.5ML auto-injectors",
+    "medication_class": "Brand",
+    "payer_name": "Fidelis Care",
+    "total_questions": 18,
+    "answered_questions": 18,
+    "supportive_texts": [
+      "The chart lists DOB 7/16/1967.",
+      "Today\u2019s date is 2026-06-02.",
+      "The patient is 58 years old.",
+      "DOB 07/16/1967",
+      "today 06/02/2026"
+    ],
+    "contradictory_texts": [
+      "Notes document BMI 34.7 with obesity history.",
+      "Entries on 6/2/2026 do not demonstrate continuous use for the last 4 months."
+    ],
+    "expected_decision": "BLOCK",
+    "expected_risk": 60.9
+  },
+  {
+    "patient": "Jordan Bennett",
+    "dob": "1972-07-01",
+    "member_id": "MBR-2625904",
+    "cmm_id": "CMM825904",
+    "drug": "Zepbound",
+    "medication": "Zepbound 10MG/0.5ML pen-injectors",
+    "medication_class": "Brand",
+    "payer_name": "Aetna Commercial",
+    "total_questions": 6,
+    "answered_questions": 6,
+    "supportive_texts": [
+      "DS$FR#1/DS$FR#5 and FR#37 explicitly cover Zepbound and state that when asked whether the drug will be used with a reduced-calorie diet and increased physical activity for weight management, the answer is Yes.",
+      "Documentation shows Zepbound therapy since at least Oct 2025 at 7.5 mg weekly with good tolerance/stability.",
+      "Dose increased to 10 mg on 1/19/2026 after completing remaining 7.5 mg pens.",
+      "This reflects >3 months of stable therapy on the requested drug (Zepbound).",
+      "Documented weights show \u22655% loss from baseline prior to Zepbound initiation."
+    ],
+    "contradictory_texts": [],
+    "expected_decision": "AUTO_SUBMIT",
+    "expected_risk": 19.6
+  },
+  {
+    "patient": "Harper Holloway",
+    "dob": "1956-11-07",
+    "member_id": "MBR-2726748",
+    "cmm_id": "CMM926748",
+    "drug": "Ozempic",
+    "medication": "Ozempic (0.25 or 0.5 MG/DOSE) 2MG/3ML pen-injectors",
+    "medication_class": "Brand",
+    "payer_name": "Cigna",
+    "total_questions": 1,
+    "answered_questions": 1,
+    "supportive_texts": [
+      "Per Fixed Response rule FR#38: when asked whether the member will be taking any additional medication therapy for this diagnosis, always answer \"No.\"",
+      "The question asks about combination with other GLP-1 or GLP-1/GIP agents (additional therapy).",
+      "FR#38 directly determines the answer."
+    ],
+    "contradictory_texts": [],
+    "expected_decision": "AUTO_SUBMIT",
+    "expected_risk": 9.4
+  },
+  {
+    "patient": "Reese Holloway",
+    "dob": "1966-02-07",
+    "member_id": "MBR-9053218",
+    "cmm_id": "CMM953218",
+    "drug": "Zepbound",
+    "medication": "Zepbound 2.5MG/0.5ML pen-injectors",
+    "medication_class": "Brand",
+    "payer_name": "Cigna",
+    "total_questions": 6,
+    "answered_questions": 6,
+    "supportive_texts": [
+      "The submitted diagnosis is G47.33 (Obstructive sleep apnea).",
+      "The chart documents obesity (BMI ~33\u201334).",
+      "Per FixedResponse rule FR#38, if asked whether the member will be taking any additional medication therapy for this diagnosis, always answer 'No'.",
+      "Chart notes on 4/14/2026 state \u201cnow off zepbound will restart.\u201d",
+      "The 6/10/2026 prescription appears to restart therapy."
+    ],
+    "contradictory_texts": [
+      "There is no evidence of ongoing administration since 4/14/2026.",
+      "Chart notes document OSA diagnosis and CPAP compliance.",
+      "There is no attached sleep study report or documentation (e.g., polysomnography/HST with AHI/RDI)."
+    ],
+    "expected_decision": "REVIEW",
+    "expected_risk": 46.3
+  },
+  {
+    "patient": "Morgan Maddox",
+    "dob": "1952-12-09",
+    "member_id": "MBR-9075884",
+    "cmm_id": "CMM975884",
+    "drug": "Zepbound",
+    "medication": "Zepbound 12.5MG/0.5ML pen-injectors",
+    "medication_class": "Brand",
+    "payer_name": "Fidelis Care",
+    "total_questions": 10,
+    "answered_questions": 10,
+    "supportive_texts": [
+      "DS$FR#1 (and FR#37/DS$FR#5) explicitly require answering 'Yes' when asked if Zepbound will be used with a reduced-calorie diet and increased physical activity.",
+      "Documentation shows Zepbound 12.5 mg weekly continued on 5/5/2026 with patient stable.",
+      "Today is 6/5/2026\u2014only ~1 month later.",
+      "DS$FR#2 applies for Zepbound (listed drug).",
+      "The rule states to always answer Yes when asked if the patient participated in a comprehensive 6-month weight management program prior to drug therapy."
+    ],
+    "contradictory_texts": [
+      "No earlier definitive start date is documented to confirm \u22653 months of therapy.",
+      "Atorvastatin appears only in med history list, not chart."
+    ],
+    "expected_decision": "BLOCK",
+    "expected_risk": 68.0
+  }
+]

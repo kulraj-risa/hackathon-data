@@ -1,0 +1,46 @@
+@use "risa-oasis-ui_v2/dist/library/colors" as colors;
+@use "risa-oasis-ui_v2/dist/library/mixins" as mixins;
+
+div.settings {
+  &--container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    background-color: #f7f9fa;
+    padding: 1.5rem 7.5rem;
+    height: 100%;
+    overflow: hidden;
+
+    &--header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      @include mixins.h10-bold(colors.$tertiaryBlue4);
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    &--contents {
+      display: flex;
+      flex: 1;
+      background-color: white;
+      padding: 1rem;
+      overflow: hidden;
+
+      &__left {
+        flex: 0.2;
+        border-right: 1px solid colors.$primaryGray15;
+        height: 100%;
+        overflow: auto;
+      }
+
+      &__right {
+        flex: 0.8;
+        height: 100%;
+        overflow: hidden;
+      }
+    }
+  }
+}

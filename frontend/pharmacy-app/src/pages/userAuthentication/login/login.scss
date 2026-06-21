@@ -1,0 +1,52 @@
+@use "risa-oasis-ui_v2/dist/library/colors" as colors;
+@use "risa-oasis-ui_v2/dist/library/mixins" as mixins;
+
+div.login-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  div.login-form-header {
+    margin-bottom: 2rem;
+    text-align: center;
+    div.title-text {
+      @include mixins.large-bold(colors.$primaryGray1);
+    }
+
+    div.title-subText {
+      @include mixins.small-regular(colors.$primaryGray6);
+    }
+  }
+
+  div.login-form-holder {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  div.login-actions-container {
+    display: flex;
+    justify-content: space-between;
+
+    button.forgot-password {
+      @include mixins.btn-tertiary("S");
+      color: colors.$tertiaryBlue4 !important;
+    }
+  }
+
+  div.login-button {
+    margin: 1.5rem 0rem;
+    width: 100%;
+
+    button.login-btn {
+      @include mixins.btn-primary("M");
+      gap: 0.5rem;
+      width: 100%;
+    }
+  }
+
+  div.login-form-no-aacount {
+    @include mixins.small-regular(colors.$primaryGray5);
+  }
+}

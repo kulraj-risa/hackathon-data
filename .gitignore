@@ -1,15 +1,50 @@
-# Python
+# ─────────────────────────────── Python ───────────────────────────────
 __pycache__/
 *.pyc
+*.pyo
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
 venv/
-.env
+.venv/
 
-# Training data may contain questionnaire/clinical text (PHI) — NEVER commit.
+# ───────────────────────── Secrets / local env ────────────────────────
+.env
+.env.*
+*.env.local
+
+# ──────────── PHI / confidential — NEVER commit these ─────────────────
+# Training data may contain questionnaire/clinical text (PHI).
 data/
 models/
-
-# Internal RISA Notion export (Medical Necessity Stack) — confidential, do not commit.
+# Internal RISA Notion export (Medical Necessity Stack) — confidential.
 Private & Shared/
+# Loose source PDFs/images dropped at the repo root (often payer policies / PHI).
+/*.pdf
+/*.png
 
-# Local editor cruft
+# ───────────── Vendored / out-of-scope code & large assets ─────────────
+# The full RISA production platform — lives in its own repo, not here.
+one-risa-1/
+# Research corpus (large PDFs).
+papers/
+# Other prototypes / apps not part of this deliverable.
+web/
+pharmacy-dashboard-demo/
+rpa_tools/
+boss-plugin/
+
+# ─────────────────────────── Node / frontend ──────────────────────────
+node_modules/
+frontend/**/build/
+frontend/**/.env.local
+pharmacy-app/node_modules/
+pharmacy-app/build/
+
+# ───────────────────────────── Editor / OS ────────────────────────────
 .DS_Store
+.idea/
+.vscode/
+*.swp

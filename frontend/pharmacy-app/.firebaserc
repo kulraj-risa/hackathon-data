@@ -1,0 +1,23 @@
+{
+  "projects": {
+    "default": "rapids-platform",
+    "demo": "rapids-platform",
+    "prod": "rapids-platform"
+  },
+  "targets": {
+    "rapids-platform": {
+      "hosting": {
+        "demo": [
+          "pharmacy-dash-demo"
+        ],
+        "staging": [
+          "staging-pharmacy-dash-demo"
+        ],
+        "hackathon": [
+          "pharmacy-hackathon-demo"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

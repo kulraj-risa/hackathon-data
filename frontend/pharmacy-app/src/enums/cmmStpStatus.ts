@@ -1,0 +1,15 @@
+export enum CmmStpStatus {
+  APPROVED = "Approved",
+  DENIED = "Denied",
+  PENDING = "Pending",
+  AUTH_NOT_REQUIRED = "Auth Not Required",
+  APPROVAL_ON_FILE = "Approval on file",
+  DENIAL_ON_FILE = "Denial on file",
+  CASE_ON_FILE = "Case on file",
+  NOT_CORRECT_PROCESSOR = "Not Correct Processor",
+  DRUG_NOT_COVERED = "Drug Not Covered",
+  NA_OUTCOME = "NA Outcome",
+  WAITING_FOR_CLINICAL = "Waiting For Clinical",
+  ONSHORE_ASSISTANCE = "Onshore Assistance",
+  SENT_TO_PLAN = "sent_to_plan",
+}

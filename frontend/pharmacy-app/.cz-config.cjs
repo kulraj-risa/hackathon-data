@@ -1,0 +1,40 @@
+module.exports = {
+  types: [
+    { value: '🔧 chore', name: '🔧 chore:     Routine tasks' },
+    { value: '🚀 ci', name: '🚀 ci:        CI/CD changes' },
+    { value: '📝 docs', name: '📝 docs:      Documentation changes' },
+    { value: '🦾 enhance', name: '🦾 enhance:   Enhancement' },
+    { value: '✨ feat', name: '✨ feat:      A new feature' },
+    { value: '🐛 fix', name: '🐛 fix:       A bug fix' },
+    { value: '♻️ refactor', name: '♻️ refactor:  Code refactoring' },
+    { value: '💄 style', name: '💄 style:     Code formatting' },
+    { value: '✅ test', name: '✅ test:      Adding tests' },
+    { value: '🚧 wip', name: '🚧 wip:       Work in progress' },
+    {value: '🪣 git', name: '🪣 git:       Git changes'}
+  ],
+  scopes: [
+    { name: 'accessibility ♿' },
+    { name: 'analytics 📊' },
+    { name: 'api 🌐' },
+    { name: 'auth 🔐' },
+    { name: 'build 🛠️' },
+    { name: 'ci 🚀' },
+    { name: 'component 🧩' },
+    { name: 'config ⚙️' },
+    { name: 'deps 📦' },
+    { name: 'docs 📝' },
+    { name: 'error 🐞' },
+    { name: 'i18n 🌍' },
+    { name: 'infra 🧱' },
+    { name: 'perf ⚡' },
+    { name: 'style 💄' },
+    { name: 'test ✅' },
+    { name: 'types 🔠' },
+    { name: 'ui 🎨' },
+    { name: 'ux 🎯' }
+  ],
+  allowCustomScopes: false,
+  allowBreakingChanges: ['✨ feat', '🐛 fix'],
+  skipQuestions: ['body', 'footer'],
+  subjectLimit: 100
+};

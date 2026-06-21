@@ -1,0 +1,70 @@
+import { TableCellType, TableHeader } from "../components/custom-table/table";
+import { NycbsPharmaOrderDataKeys } from "../enums/tableColumnKeys";
+
+export const NycbsPharmaTableColumn: TableHeader[] = [
+  {
+    label: "Patient Name",
+    key: NycbsPharmaOrderDataKeys.PATIENT_DETAILS,
+    order: 1,
+    width: 10,
+    sortable: true,
+    type: TableCellType.MULTILINE,
+    subKey: "mainText",
+  },
+  {
+    label: "Date of Birth",
+    key: NycbsPharmaOrderDataKeys.DATE_OF_BIRTH,
+    order: 2,
+    width: 8,
+    sortable: true,
+    type: TableCellType.STRING,
+  },
+  {
+    label: "Medication",
+    key: NycbsPharmaOrderDataKeys.MEDICATION,
+    order: 3,
+    width: 20,
+    sortable: true,
+    type: TableCellType.STRING,
+  },
+  {
+    label: "Provider Details",
+    key: NycbsPharmaOrderDataKeys.PROVIDER_DETAILS,
+    order: 4,
+    width: 10,
+    sortable: true,
+    type: TableCellType.STRING,
+  },
+  {
+    label: "Date of Service",
+    key: NycbsPharmaOrderDataKeys.DATE_OF_SERVICE,
+    order: 5,
+    width: 8,
+    sortable: true,
+    type: TableCellType.STRING,
+  },
+  {
+    label: "Assignee",
+    key: NycbsPharmaOrderDataKeys.ASSIGNEE,
+    order: 6,
+    width: 16,
+    sortable: true,
+    type: TableCellType.USER_INITIALS,
+  },
+  {
+    label: "Key",
+    key: NycbsPharmaOrderDataKeys.KEY,
+    order: 7,
+    width: 10,
+    sortable: true,
+    type: TableCellType.COPY_DATA,
+  },
+  {
+    label: "Status",
+    key: NycbsPharmaOrderDataKeys.STATUS,
+    order: 8,
+    width: 18,
+    sortable: true,
+    type: TableCellType.NYCBS_STATUS,
+  },
+];

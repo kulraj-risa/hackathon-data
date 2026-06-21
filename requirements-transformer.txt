@@ -1,0 +1,12 @@
+# Extra deps for the HPC embedding branch (train_transformer.py).
+# torch + transformers already exist in your `llm` conda env on PARAM Shivay;
+# these are the rest. Install into that env:  pip install -r requirements-transformer.txt
+transformers>=4.40
+torch>=2.1
+xgboost>=2.0
+scikit-learn>=1.4
+pandas>=2.2
+pyarrow>=16.0
+numpy>=1.26
+scipy>=1.11
+joblib>=1.3

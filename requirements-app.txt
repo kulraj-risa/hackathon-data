@@ -9,3 +9,5 @@ scipy>=1.11
 scikit-learn>=1.4
 xgboost>=2.0
 joblib>=1.3
+# Audit/prediction store when STORAGE_BACKEND=firestore (its own isolated DB).
+google-cloud-firestore>=2.16

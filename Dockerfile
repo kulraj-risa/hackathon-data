@@ -1,10 +1,13 @@
 # FastAPI API service for Cloud Run. Python 3.12 = stable wheels for all deps.
-# The UI is a separate Next.js service (see web/Dockerfile).
 FROM python:3.12-slim
 
 ENV PYTHONUNBUFFERED=1 \
     PIP_NO_CACHE_DIR=1 \
-    PORT=8080
+    PORT=8080 \
+    PROJECT_ROOT=/app \
+    APP_DATA_DIR=/app/app_data \
+    DATA_DIR=/app/data \
+    MODELS_DIR=/app/models
 
 WORKDIR /app
 
@@ -12,15 +15,16 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y --no-install-recommends libgomp1 \
     && rm -rf /var/lib/apt/lists/*
 
-# Install runtime deps first for better layer caching.
-COPY requirements-app.txt .
-RUN pip install --no-cache-dir -r requirements-app.txt
+# Install the package (deps resolved from pyproject.toml). README is referenced
+# by pyproject's `readme`, so it must be present at build time.
+COPY pyproject.toml README.md ./
+COPY src/ ./src/
+RUN pip install --no-cache-dir .
 
-# API code + trained model + precomputed de-identified data (NO PHI in the image).
-COPY app.py storage.py config.py feature_engineer.py denial_predictor.py ./
+# Precomputed, de-identified data baked into the image (NO PHI).
 COPY app_data/ ./app_data/
 
 EXPOSE 8080
 
-# Cloud Run sets $PORT; uvicorn must bind 0.0.0.0 and that port.
-CMD exec uvicorn app:app --host 0.0.0.0 --port ${PORT}
+# Console entrypoint binds 0.0.0.0 and honors $PORT (Cloud Run sets it).
+CMD ["denial-engine"]

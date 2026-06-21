@@ -1,0 +1,23 @@
+.edit-details-content {
+  padding: 20px;
+  max-height: 70vh;
+  overflow-y: auto;
+
+  .edit-field {
+    position: relative;
+    margin-bottom: 20px;
+
+    .field-type {
+      margin-top: 5px;
+      color: #666;
+      font-style: italic;
+      font-size: 0.8rem;
+    }
+  }
+
+  .no-fields {
+    color: #777;
+    font-style: italic;
+    text-align: center;
+  }
+}

@@ -1,0 +1,81 @@
+@use "risa-oasis-ui_v2/dist/library/colors" as colors;
+@use "risa-oasis-ui_v2/dist/library/mixins" as mixins;
+
+div.support-layout {
+  padding: 1rem;
+  height: 100%;
+  overflow: auto;
+
+  div.support {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 50%;
+    height: 100%;
+
+    div.support__header {
+      @include mixins.h10-bold(colors.$primaryGray1);
+      margin-bottom: 1.5rem;
+    }
+
+    div.support__details {
+      display: flex;
+
+      flex: 1;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-bottom: 2.25rem;
+      overflow: auto;
+    }
+
+    div.support__contact-header {
+      @include mixins.body-semiBold(colors.$primaryGray1);
+      margin-bottom: 0.75rem;
+    }
+
+    div.support__contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      background-color: colors.$primaryGray16;
+      padding: 0.75rem;
+
+      div.support__contact-detail {
+        display: flex;
+
+        div {
+          flex: 1;
+        }
+      }
+    }
+
+    div.support__report-issue {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      div.support__report-issue-header {
+        @include mixins.body-semiBold(colors.$primaryGray1);
+      }
+
+      div.support__report-concern {
+        @include mixins.tiny-regular(colors.$primaryGray1);
+
+        textarea {
+          margin-top: 0.3rem;
+          padding: 0.5rem;
+          max-width: 100%;
+        }
+      }
+    }
+
+    div.support__actions {
+      display: flex;
+      gap: 1rem;
+
+      & > button {
+        flex: 1;
+      }
+    }
+  }
+}

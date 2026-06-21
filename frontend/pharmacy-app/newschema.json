@@ -1,0 +1,873 @@
+[
+  {
+    "name": "identifier",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "org_id",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "portal_id",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "workflow",
+    "type": "RECORD",
+    "mode": "NULLABLE",
+    "fields": [
+      {
+        "name": "status",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "final_outcome",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "comment",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "error_text",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "type",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "review_type",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "assignee_id",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "cmm_result_key",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "patient_eligibility_check_status",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "is_substitution_allowed",
+        "type": "BOOL",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "date_of_service",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "suggested_actions",
+        "type": "RECORD",
+        "mode": "REPEATED",
+        "fields": [
+          {
+            "name": "next_steps",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "next_steps_summary",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "alternate_insurance",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "alternate_insurance_form_name",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "key_from_outcome",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "phone_from_outcome",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "fax_from_outcome",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "drug",
+    "type": "RECORD",
+    "mode": "NULLABLE",
+    "fields": [
+      {
+        "name": "drug_name",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "drug_name_onco_emr",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "drug_fetched_from",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "drug_confidence_score",
+        "type": "FLOAT",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "drug_picked_thinking",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "ndc_number",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "quantity",
+        "type": "FLOAT",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "quantity_qualifier",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "days_supply",
+        "type": "INTEGER",
+        "mode": "NULLABLE"
+      }
+    ]
+  },
+  {
+    "name": "prescription",
+    "type": "RECORD",
+    "mode": "NULLABLE",
+    "fields": [
+      {
+        "name": "description",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "prescription_date",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "instructions",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "dispense_qty",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "dispense_qty_string",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "refill_qty",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "refill_qty_string",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "is_related_drug_match",
+        "type": "BOOL",
+        "mode": "NULLABLE"
+      }
+    ]
+  },
+  {
+    "name": "patient",
+    "type": "RECORD",
+    "mode": "NULLABLE",
+    "fields": [
+      {
+        "name": "patient_mrn",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "first_name",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "last_name",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "full_name",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "dob",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "gender",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "phone_number",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "address",
+        "type": "RECORD",
+        "mode": "NULLABLE",
+        "fields": [
+          {
+            "name": "street1",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "street2",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "city",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "state",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "zip",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "full_address",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "city_state_zip",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "provider",
+    "type": "RECORD",
+    "mode": "NULLABLE",
+    "fields": [
+      {
+        "name": "first_name",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "last_name",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "full_name",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "npi",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "credentials",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "practice_name",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "speciality",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "address",
+        "type": "RECORD",
+        "mode": "NULLABLE",
+        "fields": [
+          {
+            "name": "street1",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "street2",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "city",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "state",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "zip",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          }
+        ]
+      },
+      {
+        "name": "phone",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "fax",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      }
+    ]
+  },
+  {
+    "name": "diagnosis",
+    "type": "RECORD",
+    "mode": "NULLABLE",
+    "fields": [
+      {
+        "name": "diagnosis_codes",
+        "type": "RECORD",
+        "mode": "REPEATED",
+        "fields": [
+          {
+            "name": "icd10_code",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "description",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "drug_name",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "diag_date",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "last_verified_date",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "is_primary",
+            "type": "BOOL",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "is_secondary",
+            "type": "BOOL",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "is_selected_for_form",
+            "type": "BOOL",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "is_found_by_priority_order",
+            "type": "BOOL",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "source",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "confidence_score",
+            "type": "FLOAT",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "llm_thinking",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "insurance",
+    "type": "RECORD",
+    "mode": "NULLABLE",
+    "fields": [
+      {
+        "name": "form_picked_flag",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "patient_member_id",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "patient_rx_bin",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "patient_rx_group",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "patient_rx_pcn",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "patient_insurance_state",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "sftp_rx_bin",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "sftp_member_id",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "active_insurance",
+        "type": "RECORD",
+        "mode": "NULLABLE",
+        "fields": [
+          {
+            "name": "insurance",
+            "type": "RECORD",
+            "mode": "NULLABLE",
+            "fields": [
+              {
+                "name": "effective",
+                "type": "STRING",
+                "mode": "NULLABLE"
+              },
+              {
+                "name": "group_number",
+                "type": "STRING",
+                "mode": "NULLABLE"
+              },
+              {
+                "name": "insurer",
+                "type": "STRING",
+                "mode": "NULLABLE"
+              },
+              {
+                "name": "ltc",
+                "type": "STRING",
+                "mode": "NULLABLE"
+              },
+              {
+                "name": "mail_order_benefit",
+                "type": "STRING",
+                "mode": "NULLABLE"
+              },
+              {
+                "name": "phone",
+                "type": "STRING",
+                "mode": "NULLABLE"
+              },
+              {
+                "name": "plan_name",
+                "type": "STRING",
+                "mode": "NULLABLE"
+              },
+              {
+                "name": "plan_number",
+                "type": "STRING",
+                "mode": "NULLABLE"
+              },
+              {
+                "name": "policy_number",
+                "type": "STRING",
+                "mode": "NULLABLE"
+              },
+              {
+                "name": "retail_benefit",
+                "type": "STRING",
+                "mode": "NULLABLE"
+              },
+              {
+                "name": "specialty",
+                "type": "STRING",
+                "mode": "NULLABLE"
+              },
+              {
+                "name": "term",
+                "type": "STRING",
+                "mode": "NULLABLE"
+              },
+              {
+                "name": "type",
+                "type": "STRING",
+                "mode": "NULLABLE"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "insurance_records",
+        "type": "RECORD",
+        "mode": "REPEATED",
+        "fields": [
+          {
+            "name": "identifier",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "patient_mrn",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "created_at",
+            "type": "TIMESTAMP",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "type",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "insurer",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "effective_date",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "term_date",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "phone",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "policy_number",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "group_number",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "plan_number",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "plan_name",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "retail_benefit",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "mail_order_benefit",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "ltc",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "specialty",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "documents",
+    "type": "RECORD",
+    "mode": "REPEATED",
+    "fields": [
+      {
+        "name": "identifier",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "patient_mrn",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "document_name",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "file_path",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "visit_date",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "document_type",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "signed_status_text",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      }
+    ]
+  },
+  {
+    "name": "questionnaire",
+    "type": "RECORD",
+    "mode": "NULLABLE",
+    "fields": [
+      {
+        "name": "document_name",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "qa_confidence",
+        "type": "FLOAT",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "file_path",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "questions",
+        "type": "RECORD",
+        "mode": "REPEATED",
+        "fields": [
+          {
+            "name": "question",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "options",
+            "type": "STRING",
+            "mode": "REPEATED"
+          },
+          {
+            "name": "answer",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "type",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "api_response",
+            "type": "RECORD",
+            "mode": "NULLABLE",
+            "fields": [
+              {
+                "name": "facts",
+                "type": "RECORD",
+                "mode": "NULLABLE",
+                "fields": [
+                  {
+                    "name": "supportive_facts",
+                    "type": "STRING",
+                    "mode": "REPEATED"
+                  },
+                  {
+                    "name": "contradictory_facts",
+                    "type": "STRING",
+                    "mode": "REPEATED"
+                  }
+                ]
+              },
+              {
+                "name": "answer",
+                "type": "STRING",
+                "mode": "NULLABLE"
+              }
+            ]
+          },
+          {
+            "name": "multiple_choice_answers",
+            "type": "STRING",
+            "mode": "REPEATED"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "denial_prediction",
+    "type": "RECORD",
+    "mode": "NULLABLE",
+    "fields": [
+      {
+        "name": "prediction_summary",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "prediction_confidence",
+        "type": "FLOAT",
+        "mode": "NULLABLE"
+      }
+    ]
+  },
+  {
+    "name": "response_status_information",
+    "type": "RECORD",
+    "mode": "NULLABLE",
+    "fields": [
+      {
+        "name": "denial_reason",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "denial_summary",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "auth_date",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      }
+    ]
+  },
+  {
+    "name": "metadata",
+    "type": "RECORD",
+    "mode": "NULLABLE",
+    "fields": [
+      {
+        "name": "pay_method",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "filename",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "name": "metadata",
+        "type": "RECORD",
+        "mode": "NULLABLE",
+        "fields": [
+          {
+            "name": "portal_name",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          }
+        ]
+      }
+    ]
+  }
+]

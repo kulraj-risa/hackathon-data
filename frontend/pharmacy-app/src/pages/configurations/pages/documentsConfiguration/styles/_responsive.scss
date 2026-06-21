@@ -1,0 +1,70 @@
+// Responsive adjustments
+@media (max-width: 992px) {
+  .configuration-browser {
+    .section {
+      .level-row-combined {
+        flex-direction: column;
+        gap: 20px;
+
+        .level-item {
+          width: 100%;
+
+          &:nth-child(3) {
+            min-width: auto;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .configuration-browser {
+    .section {
+      padding: 15px;
+
+      .level-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+
+        h3 {
+          margin-bottom: 5px;
+        }
+
+        .select-container {
+          width: 100%;
+        }
+
+        // Responsive styling for section titles
+        .section-title {
+          .version-in-use-loading-inline {
+            display: block;
+            margin-top: 5px;
+            margin-left: 0;
+            font-size: 0.75rem;
+          }
+        }
+      }
+
+      .section-header {
+        flex-direction: column;
+        align-items: stretch;
+
+        .header-content {
+          margin-bottom: 15px;
+        }
+      }
+    }
+
+    .section-content {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .section-actions {
+      margin-top: 10px;
+      margin-left: 0;
+    }
+  }
+}

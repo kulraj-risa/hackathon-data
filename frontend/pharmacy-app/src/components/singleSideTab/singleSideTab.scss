@@ -1,0 +1,26 @@
+@use "risa-oasis-ui_v2/dist/library/colors" as colors;
+@use "risa-oasis-ui_v2/dist/library/mixins" as mixins;
+
+a.single-side-tab-content {
+  @include mixins.small-regular(colors.$primaryGray6);
+  display: block;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
+  border-left: 4px solid transparent;
+  background-color: colors.$primaryGray16;
+  padding: 1rem 1rem 0.75rem 1rem;
+  width: 100%;
+  text-decoration: none;
+
+  &.active {
+    @include mixins.small-bold(colors.$tertiaryBlue4);
+    border-left: 4px solid colors.$tertiaryBlue4;
+    background-color: white;
+    color: colors.$tertiaryBlue4;
+  }
+
+  &:not(.active):hover {
+    cursor: pointer !important;
+    @include mixins.small-semiBold(colors.$tertiaryBlue9);
+  }
+}

@@ -1,0 +1,197 @@
+[
+  {
+    "case_id": "5be5f9b5",
+    "drug": "Zepbound",
+    "medication_class": "Brand",
+    "payer_name": "CVS Caremark Non-Medicare Formulary Exception / Prior Authorization Request Form",
+    "total_questions": 6,
+    "answered_questions": 6,
+    "supportive_texts": [
+      "Drug-specific rules (DS$FR#1, DS$FR#4, DS$FR#5) for Zepbound state that for these products the medication is used with lifestyle modifications including a reduced-calorie diet and increased physical activity.",
+      "FR#37 mandates answering 'Yes' for this question.",
+      "Prolonged use of Zepbound with stability at 7.5 mg for >3 months after resuming in late Dec 2025 until the 5/12/2026 increase to 10 mg.",
+      "10 mg started on 5/12/2026 has not been 3 months yet, but the dose does not need to match exactly.",
+      "The patient has completed \u22653 months on the requested drug at a stable maintenance dose."
+    ],
+    "contradictory_texts": [],
+    "actual_outcome": "Approved",
+    "predicted_risk": 8.6,
+    "predicted_level": "LOW",
+    "predicted_decision": "AUTO_SUBMIT",
+    "predicted_label": "Approved",
+    "correct": true
+  },
+  {
+    "case_id": "85b5a2d6",
+    "drug": "Zepbound",
+    "medication_class": "Brand",
+    "payer_name": "CVS Caremark Non-Medicare",
+    "total_questions": 3,
+    "answered_questions": 3,
+    "supportive_texts": [
+      "The prescription is for Zepbound (tirzepatide), not Wegovy (semaglutide).",
+      "The chart shows obesity (BMI 34.5) and hypertension.",
+      "The chart documents obesity (BMI 34.5; ICD-10 E66.9).",
+      "There is a request for weight loss medication (Zepbound)."
+    ],
+    "contradictory_texts": [
+      "No established cardiovascular disease (no MI, stroke, PAD, or revascularization) is present.",
+      "There is no diagnosis or documentation of obstructive sleep apnea.",
+      "There is no sleep study indicating moderate to severe OSA.",
+      "The prescription requests Zepbound (tirzepatide) for obesity (E66.9).",
+      "There is no documentation of Wegovy (semaglutide) being requested."
+    ],
+    "actual_outcome": "Denied",
+    "predicted_risk": 98.6,
+    "predicted_level": "HIGH",
+    "predicted_decision": "BLOCK",
+    "predicted_label": "Denied",
+    "correct": true
+  },
+  {
+    "case_id": "2420166f",
+    "drug": "Injectafer",
+    "medication_class": "Brand",
+    "payer_name": "Cigna Medication",
+    "total_questions": 4,
+    "answered_questions": 4,
+    "supportive_texts": [
+      "The EMR lists ICD-10 D50.9 (iron deficiency anemia, unspecified).",
+      "Provider notes indicate iron deficiency due to chronic heavy menstrual bleeding.",
+      "No CKD or heart failure is indicated.",
+      "Provider notes document \u201cShe has been taking oral iron without improvement.\u201d",
+      "Provider notes document \u201cpersistent symptoms despite oral iron.\u201d"
+    ],
+    "contradictory_texts": [],
+    "actual_outcome": "Approved",
+    "predicted_risk": 20.6,
+    "predicted_level": "LOW",
+    "predicted_decision": "AUTO_SUBMIT",
+    "predicted_label": "Approved",
+    "correct": true
+  },
+  {
+    "case_id": "8544ec46",
+    "drug": "Injectafer",
+    "medication_class": "Brand",
+    "payer_name": "Fidelis Care",
+    "total_questions": 16,
+    "answered_questions": 16,
+    "supportive_texts": [
+      "FR#4 mandates strictly selecting expedited review when given the choice between standard and expedited review.",
+      "DS$FR#3 specifically covers Injectafer.",
+      "Substitution with the preferred brand or generic on the formulary is always permitted.",
+      "Diagnosis listed: D50.9 \u2013 Iron deficiency anemia, unspecified.",
+      "Injectafer (ferric carboxymaltose) is FDA-approved for treatment of iron deficiency anemia."
+    ],
+    "contradictory_texts": [
+      "No specific medication names other than \"oral iron via prenatal vitamin\" are listed.",
+      "No specific outcomes other than \"inadequate response\" are detailed.",
+      "Signed by Alexander Zuhoski, MD and Melanie Acierno, DNP.",
+      "There is no information provided about whether the member will be taking any additional medication therapy for this diagnosis."
+    ],
+    "actual_outcome": "Denied",
+    "predicted_risk": 93.8,
+    "predicted_level": "HIGH",
+    "predicted_decision": "BLOCK",
+    "predicted_label": "Denied",
+    "correct": true
+  },
+  {
+    "case_id": "dfaae8b1",
+    "drug": "Venofer",
+    "medication_class": "Brand",
+    "payer_name": "Fidelis Care",
+    "total_questions": 17,
+    "answered_questions": 17,
+    "supportive_texts": [
+      "Per Fixed Response rule FR#4, when given the choice between standard and expedited review, strictly select expedited.",
+      "DS$FR#3 directly applies for Venofer.",
+      "The drug-specific fixed response states substitution with the preferred brand or generic on the formulary is allowed.",
+      "Drug-specific rules override general FR rules.",
+      "Venofer (iron sucrose) is FDA-approved for iron deficiency anemia in patients with chronic kidney disease."
+    ],
+    "contradictory_texts": [
+      "No CKD (e.g., N18.x) is documented.",
+      "No documented stability or sustained response yet."
+    ],
+    "actual_outcome": "Denied",
+    "predicted_risk": 90.3,
+    "predicted_level": "HIGH",
+    "predicted_decision": "BLOCK",
+    "predicted_label": "Denied",
+    "correct": true
+  },
+  {
+    "case_id": "5b858352",
+    "drug": "Wegovy",
+    "medication_class": "Brand",
+    "payer_name": "CVS Caremark Non-Medicare Formulary Exception / Prior Authorization Request Form",
+    "total_questions": 5,
+    "answered_questions": 5,
+    "supportive_texts": [
+      "The request is for Wegovy.",
+      "Per FR#37 (and DS$FR#4/DS$FR#5 for Wegovy), when asked whether the drug will be used with a reduced-calorie diet and increased physical activity, the fixed response is \"Yes.\"",
+      "DOB 10/12/1977 documented.",
+      "As of 2026-06-08 the patient is 48 years old.",
+      "The patient has been on Wegovy at a stable maintenance dose of 2.4 mg weekly since at least 11/20/2025."
+    ],
+    "contradictory_texts": [
+      "Baseline pre-Wegovy weight not found."
+    ],
+    "actual_outcome": "Approved",
+    "predicted_risk": 21.5,
+    "predicted_level": "LOW",
+    "predicted_decision": "REVIEW",
+    "predicted_label": "Approved",
+    "correct": true
+  },
+  {
+    "case_id": "acb8955c",
+    "drug": "Gemtesa",
+    "medication_class": "Brand",
+    "payer_name": "CVS Caremark Non-Medicare",
+    "total_questions": 3,
+    "answered_questions": 3,
+    "supportive_texts": [
+      "FR#35 applies: the rules state that when asked this specific question about plan coverage for other drugs, the required fixed response is \"No\".",
+      "Documentation shows only prior oxybutynin ER use.",
+      "There is no documented intolerance, contraindication, or inadequate response to oxybutynin.",
+      "There are no trials/failures with mirabegron (Myrbetriq), solifenacin, tolterodine, trospium, or other listed formulary options.",
+      "Only oxybutynin ER trial is documented."
+    ],
+    "contradictory_texts": [
+      "The patient prefers to stay off oxybutynin ER, but this is not documented as intolerance or contraindication.",
+      "No failures or intolerances to other formulary alternatives are documented.",
+      "No contraindications to other formulary alternatives are recorded."
+    ],
+    "actual_outcome": "Denied",
+    "predicted_risk": 95.4,
+    "predicted_level": "HIGH",
+    "predicted_decision": "BLOCK",
+    "predicted_label": "Denied",
+    "correct": true
+  },
+  {
+    "case_id": "21e629d6",
+    "drug": "Tadalafil",
+    "medication_class": "Generic",
+    "payer_name": "Caremark Medicare Coverage Determination Request Form",
+    "total_questions": 2,
+    "answered_questions": 2,
+    "supportive_texts": [
+      "FR#4 states to strictly select expedited request when given the choice between standard and expedited review.",
+      "The prescription is tadalafil 5 mg daily with diagnosis N52.9 (male erectile dysfunction).",
+      "Clinical notes post-RALP document poor erections and \u201cstart Cialis.\u201d"
+    ],
+    "contradictory_texts": [
+      "No documentation of BPH/LUTS treatment or pulmonary hypertension."
+    ],
+    "actual_outcome": "Denied",
+    "predicted_risk": 84.3,
+    "predicted_level": "HIGH",
+    "predicted_decision": "BLOCK",
+    "predicted_label": "Denied",
+    "correct": true
+  }
+]

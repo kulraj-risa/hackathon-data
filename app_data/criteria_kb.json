@@ -1,0 +1,549 @@
+{
+  "Akynzeo": {
+    "n_cases": 12,
+    "approval_rate": 0.58,
+    "criteria_checklist": [],
+    "winning_evidence_examples": [
+      "Per FixedResponse rule FR#4 which instructs to strictly select expedited review when given the choice between standard and expedited review.",
+      "Per Fixed Response rule FR#4: when given the choice between standard and expedited review, strictly select expedited review.",
+      "FR#4 directs that when given the choice between standard and expedited review, always select expedited.",
+      "DS$FR#1 and FR#34 state that when asked whether all formulary agents would be ineffective (and specifically for Akynzeo), the correct fixed response is \"Yes.\"",
+      "No documentation indicates adverse reactions to all formulary antiemetics."
+    ],
+    "common_denial_gaps": [
+      "No documented failure/intolerance to ondansetron.",
+      "No documented failure/intolerance to palonosetron.",
+      "No contraindications to formulary antiemetics identified.",
+      "Chart notes and prior responses show no documented trial/failure, intolerance, contraindications, or rationale against formulary antiemetics.",
+      "Required documentation explaining why alternatives cannot be used is not provided."
+    ]
+  },
+  "Alprazolam": {
+    "n_cases": 8,
+    "approval_rate": 0.75,
+    "criteria_checklist": [
+      {
+        "question": "2. Has the prescriber determined that taking opioids and benzodiazepines together is medically necessary for the patient?",
+        "frequency": 0.38,
+        "appears_in": 3
+      },
+      {
+        "question": "1. Is the patient using an opioid with the requested drug?",
+        "frequency": 0.38,
+        "appears_in": 3
+      },
+      {
+        "question": "Is the request for an Expedited Review?",
+        "frequency": 0.38,
+        "appears_in": 3
+      },
+      {
+        "question": "Will this prior authorization contain data subject to 42 C.F.R. Part 2 \u2013 Confidentiality of Substance Use Disorder Recor?",
+        "frequency": 0.38,
+        "appears_in": 3
+      },
+      {
+        "question": "Has the patient filled an opioid product in the past 60 days?",
+        "frequency": 0.38,
+        "appears_in": 3
+      },
+      {
+        "question": "Do any of the following apply to this patient?",
+        "frequency": 0.38,
+        "appears_in": 3
+      },
+      {
+        "question": "Has the patient filled a different benzodiazepine for at least 15 days in the past 60 days?",
+        "frequency": 0.38,
+        "appears_in": 3
+      }
+    ],
+    "winning_evidence_examples": [
+      "FR#4 (FixedResponse) mandates selecting expedited review whenever given the choice between standard and expedited review.",
+      "Records show concurrent Percocet (oxycodone/acetaminophen) prescribed with Xanax, including on 3/17/2026.",
+      "There is no documentation stating that concurrent use is medically necessary.",
+      "Chart shows anxiety.",
+      "Chart shows insomnia."
+    ],
+    "common_denial_gaps": [
+      "The chart shows concurrent prescriptions for tramadol (opioid) and alprazolam (benzodiazepine).",
+      "There is no explicit documentation that the prescriber determined the concurrent use is medically necessary.",
+      "There is no documentation that risks/benefits were assessed and justified.",
+      "Records show concurrent benzodiazepine (alprazolam) and opioid use.",
+      "There is no documentation that the prescriber explicitly determined the combination is medically necessary."
+    ]
+  },
+  "Aranesp": {
+    "n_cases": 26,
+    "approval_rate": 0.69,
+    "criteria_checklist": [
+      {
+        "question": "Is the request for an Expedited Review?",
+        "frequency": 0.31,
+        "appears_in": 8
+      }
+    ],
+    "winning_evidence_examples": [
+      "FR#4 mandates selecting expedited review when given the choice between standard and expedited review.",
+      "When given the choice between standard and expedited review, strictly select expedited.",
+      "FR#4 mandates selecting expedited review when given the choice between standard and expedited review.",
+      "FR#4 mandates to strictly select expedited request whenever given the choice between standard and expedited review.",
+      "FR#4 mandates strictly selecting expedited review when given a choice between standard and expedited review."
+    ],
+    "common_denial_gaps": [
+      "FR#34 applies: when asked whether all formulary agents would be ineffective, always answer \"Yes\".",
+      "No evidence of chemotherapy",
+      "No evidence of MDS",
+      "No evidence of cancer",
+      "No evidence of transfusion refusal"
+    ]
+  },
+  "Cyclobenzaprine": {
+    "n_cases": 8,
+    "approval_rate": 1.0,
+    "criteria_checklist": [
+      {
+        "question": "Will this prior authorization contain data subject to 42 C.F.R. Part 2 \u2013 Confidentiality of Substance Use Disorder Recor?",
+        "frequency": 0.38,
+        "appears_in": 3
+      },
+      {
+        "question": "Review of the patient's medical records indicates that the patient is naive to the requested medication. The request is ?",
+        "frequency": 0.38,
+        "appears_in": 3
+      }
+    ],
+    "winning_evidence_examples": [
+      "When given the choice between standard and expedited review, strictly select expedited review.",
+      "Per Fixed Response rule FR#42, always answer \"Yes\" to the question \"Does the prescriber agree...\".",
+      "The chart shows pain management with opioid prescribing and monitoring.",
+      "There is no diagnosis, treatment, or referral for a substance use disorder from a Part 2 program.",
+      "Per Fixed Response rule FR#42, when asked if the prescriber agrees/plans/will do an action, always answer \"Yes\"."
+    ],
+    "common_denial_gaps": []
+  },
+  "Dexcom": {
+    "n_cases": 10,
+    "approval_rate": 0.6,
+    "criteria_checklist": [
+      {
+        "question": "Does the patient have a diagnosis of diabetes mellitus?",
+        "frequency": 0.5,
+        "appears_in": 5
+      },
+      {
+        "question": "Is the patient using insulin therapy?",
+        "frequency": 0.5,
+        "appears_in": 5
+      }
+    ],
+    "winning_evidence_examples": [
+      "Diagnosis section lists E11.65 (Type 2 diabetes mellitus with hyperglycemia).",
+      "Multiple notes document T2DM.",
+      "Records show active use of Soliqua (contains insulin glargine).",
+      "Records show active use of Humalog correction scale.",
+      "Z79.4 (long-term insulin use) is documented."
+    ],
+    "common_denial_gaps": [
+      "Diabetes meds noted are metformin (stopped) and sitagliptin (Januvia, planned restart).",
+      "Medication list shows empagliflozin (Jardiance) and GLP-1 agents (tirzepatide Mounjaro, semaglutide Rybelsus), with prior dapagliflozin (Farxiga) and metformin intolerance."
+    ]
+  },
+  "Freestyle": {
+    "n_cases": 9,
+    "approval_rate": 0.56,
+    "criteria_checklist": [
+      {
+        "question": "Will this prior authorization contain data subject to 42 C.F.R. Part 2 \u2013 Confidentiality of Substance Use Disorder Recor?",
+        "frequency": 0.44,
+        "appears_in": 4
+      }
+    ],
+    "winning_evidence_examples": [
+      "The requested product is FreeStyle Libre 2 Sensor.",
+      "The chart shows multiple prior prescriptions/uses of FreeStyle Libre 2 Sensor (e.g., 7/24/2024; 1/4/2025; 3/24/2025; 8/12/2025).",
+      "There is a 3/17/2026 plan to continue refills.",
+      "No documentation indicates a substance use disorder diagnosis, treatment, or records from a Part 2 program.",
+      "The PA is for diabetes management (CGM)."
+    ],
+    "common_denial_gaps": []
+  },
+  "Gemtesa": {
+    "n_cases": 28,
+    "approval_rate": 0.5,
+    "criteria_checklist": [],
+    "winning_evidence_examples": [
+      "FR#4 mandates selecting expedited review when given the choice between standard and expedited review.",
+      "Rule FR#4 instructs to strictly select expedited review when given the choice between standard and expedited.",
+      "Per Fixed Response rule FR#25, when asked to consider a Preferred Drug List alternative for extended approval, always select \"No acceptable alternative available.\"",
+      "The request is for Gemtesa to treat overactive bladder (N32.81).",
+      "There is no diagnosis, treatment, or referral information related to a substance use disorder."
+    ],
+    "common_denial_gaps": [
+      "The patient prefers to stay off oxybutynin ER, but this is not documented as intolerance or contraindication.",
+      "No failures or intolerances to other formulary alternatives are documented.",
+      "No contraindications to other formulary alternatives are recorded.",
+      "There is no documentation confirming ongoing/current use.",
+      "A new 90-day prescription request alone does not prove current active use."
+    ]
+  },
+  "Injectafer": {
+    "n_cases": 31,
+    "approval_rate": 0.52,
+    "criteria_checklist": [],
+    "winning_evidence_examples": [
+      "EMR lists ICD-10 D50.9 (Iron deficiency anemia, unspecified).",
+      "Med list shows Ferosul (ferrous sulfate) 325 mg tablets.",
+      "Provider notes state he has been taking oral iron since discharge.",
+      "Provider note states \u201corder Injectafer\u2026 due to low iron sat and inability to tolerate oral iron,\u201d indicating intolerance.",
+      "The EMR lists ICD-10 D50.9 (iron deficiency anemia, unspecified)."
+    ],
+    "common_denial_gaps": [
+      "The chart shows no prior iron therapy trials.",
+      "The dates the patient tried the generic are missing.",
+      "The reasons the generic equivalent cannot be used at this time are missing.",
+      "Any missing information should be considered as contradictory.",
+      "No prior ongoing use documented."
+    ]
+  },
+  "Lidocaine": {
+    "n_cases": 12,
+    "approval_rate": 0.75,
+    "criteria_checklist": [
+      {
+        "question": "Is the request for an Expedited Review?",
+        "frequency": 0.33,
+        "appears_in": 4
+      }
+    ],
+    "winning_evidence_examples": [
+      "FR#4 mandates strictly selecting expedited review when given the choice between standard and expedited review.",
+      "Diagnosis lists B02.23 Postherpetic polyneuropathy.",
+      "Notes document post herpetic neuralgia with rib pain.",
+      "Lidocaine 5% patches were started for this condition.",
+      "FR#4 mandates selecting expedited when given the choice between standard and expedited review."
+    ],
+    "common_denial_gaps": [
+      "M79.2 is not a specific chronic back pain diagnosis.",
+      "No record indicates a back-related condition.",
+      "There is no evidence of postherpetic neuralgia in the records provided.",
+      "There is no evidence of diabetic neuropathy in the records provided.",
+      "There is no evidence of cancer-related neuropathy in the records provided."
+    ]
+  },
+  "Lupron": {
+    "n_cases": 19,
+    "approval_rate": 0.58,
+    "criteria_checklist": [
+      {
+        "question": "Is the request for an Expedited Review?",
+        "frequency": 0.37,
+        "appears_in": 7
+      }
+    ],
+    "winning_evidence_examples": [
+      "Per FR#4, the expedited option must be chosen.",
+      "Per rule FR#4, when given the choice between standard and expedited review, strictly select expedited review.",
+      "FR#4 instructs to strictly select expedited review whenever given the choice between standard and expedited review.",
+      "FR#4 states to strictly select expedited review when given the choice between standard and expedited review.",
+      "Per FixedResponse rule FR#4: when given the choice between standard and expedited review, strictly select expedited."
+    ],
+    "common_denial_gaps": [
+      "There is no documentation of an injection administered.",
+      "There is no documentation of active ongoing use.",
+      "A prescription alone doesn\u2019t confirm current treatment.",
+      "Stage IIB cT1cN0M0, Gleason 3+4=7, PSA 13 ng/mL is not explicitly mentioned.",
+      "Other meds unrelated to prostate cancer."
+    ]
+  },
+  "Mounjaro": {
+    "n_cases": 36,
+    "approval_rate": 0.75,
+    "criteria_checklist": [],
+    "winning_evidence_examples": [
+      "Records show Mounjaro was prescribed and sent for insurance approval on 6/5/2026 with plans to start.",
+      "There is no documentation of dispensing or administration yet.",
+      "FDA-labeled contraindications for tirzepatide are personal/family history of medullary thyroid carcinoma or MEN2, and prior serious hypersensitivity to tirzepatide.",
+      "Chart shows only latex allergy.",
+      "Denies medication allergies."
+    ],
+    "common_denial_gaps": [
+      "No diagnosis of Type 2 Diabetes Mellitus is present.",
+      "Neither \u201cNewly diagnosed T2DM\u201d nor \u201cExisting T2DM\u201d applies.",
+      "There is no mention of medical records (e.g., chart notes) being submitted.",
+      "Mounjaro is not being prescribed for weight loss.",
+      "Primary diagnoses are T2DM with complications, HTN, HLD"
+    ]
+  },
+  "Ozempic": {
+    "n_cases": 22,
+    "approval_rate": 0.77,
+    "criteria_checklist": [],
+    "winning_evidence_examples": [
+      "Per Fixed Response rule FR#38: when asked whether the member will be taking any additional medication therapy for this diagnosis, always answer \"No.\"",
+      "The question asks about combination with other GLP-1 or GLP-1/GIP agents (additional therapy).",
+      "FR#38 directly determines the answer.",
+      "FR#38 states when asked whether the member will be taking any additional medication therapy for this diagnosis, always answer \"No.\"",
+      "The question asks about concomitant use of other GLP-1 or GLP-1/GIP agonists (additional medication therapy)."
+    ],
+    "common_denial_gaps": [
+      "No documented type 2 diabetes diagnosis.",
+      "T2DM appears only in family history.",
+      "Ozempic is not listed among the specific options provided.",
+      "There is no diagnosis of type 2 diabetes mellitus (A1c 5.8\u20135.9%).",
+      "No diagnosis of type 2 diabetes or established CVD."
+    ]
+  },
+  "Prolia": {
+    "n_cases": 16,
+    "approval_rate": 0.69,
+    "criteria_checklist": [
+      {
+        "question": "Is the request for an Expedited Review?",
+        "frequency": 0.38,
+        "appears_in": 6
+      }
+    ],
+    "winning_evidence_examples": [
+      "Per Fixed Response rule FR#4, when given the choice between standard and expedited review, always select expedited review.",
+      "FR#4 mandates that when given the choice between standard and expedited review, strictly select expedited review.",
+      "Per Fixed Response rule FR#4: when given the choice between standard and expedited review, strictly select expedited.",
+      "Per Fixed Response rule FR#4: when given the choice between standard and expedited review, strictly select expedited.",
+      "Per Fixed Response rule FR#4: when given the choice between standard and expedited review, strictly select expedited review."
+    ],
+    "common_denial_gaps": [
+      "No evidence of prior use of ibandronate or risedronate.",
+      "No specific contraindication uniquely disqualifying ibandronate or risedronate beyond general GERD history.",
+      "\u201cJubbonti or Stoboclo\u201d not documented.",
+      "No supporting records of alternative failure/intolerance were submitted.",
+      "Rather than cancel."
+    ]
+  },
+  "Repatha": {
+    "n_cases": 11,
+    "approval_rate": 0.64,
+    "criteria_checklist": [],
+    "winning_evidence_examples": [
+      "Drug-specific rules have priority.",
+      "DS$FR#1 is an applicable drug-specific rule that unconditionally requires answering \"NO\".",
+      "Per FR#4: \"Strictly select expedited request if given the choice between standard and expedited review in all cases.\"",
+      "Apply DS$FR#1 which states \"Always answer NO.\"",
+      "Drug-specific rule DS$FR#1 applies; it mandates answering \"No\" for this question."
+    ],
+    "common_denial_gaps": [
+      "The thinking process does not provide information on whether the patient has been on this medication continuously for the last 6 months excluding samples.",
+      "No documentation of ASCVD or familial hypercholesterolemia.",
+      "DS$FR#1 mandates always answering NO.",
+      "No other rule overrides the drug-specific fixed-response rule DS$FR#1.",
+      "No documentation of a Dutch Lipid Clinic Network (DLCN) score."
+    ]
+  },
+  "Tadalafil": {
+    "n_cases": 43,
+    "approval_rate": 0.4,
+    "criteria_checklist": [
+      {
+        "question": "Is the request for an Expedited Review?",
+        "frequency": 0.35,
+        "appears_in": 15
+      }
+    ],
+    "winning_evidence_examples": [
+      "The chart and diagnosis list document N40.1 (BPH with LUTS).",
+      "The chart explicitly states \u201cCialis for BPH.\u201d",
+      "Tadalafil 5 mg daily is indicated for BPH.",
+      "FR#4 mandates strictly selecting expedited review when given a choice between standard and expedited review.",
+      "Diagnosis code N40.1 indicates BPH with LUTS."
+    ],
+    "common_denial_gaps": [
+      "There is no documentation of earlier continuous use.",
+      "Singular symptom requested, but no other symptoms mentioned.",
+      "No documentation of prior alpha-blocker therapy (e.g., tamsulosin/alfuzosin/doxazosin/terazosin/silodosin) or adverse reaction in the medical record or medication history.",
+      "No documentation of prior use, failure, or adverse reaction to any 5-alpha reductase inhibitor (finasteride or dutasteride) in the chart or medication history.",
+      "There is no BPH diagnosis."
+    ]
+  },
+  "Testopel": {
+    "n_cases": 14,
+    "approval_rate": 0.64,
+    "criteria_checklist": [
+      {
+        "question": "Is the request for an Expedited Review?",
+        "frequency": 0.43,
+        "appears_in": 6
+      }
+    ],
+    "winning_evidence_examples": [
+      "When given the choice between standard and expedited review, strictly select expedited.",
+      "Per rule FR#4, when given the choice between standard and expedited review, strictly select expedited.",
+      "Fixed-response rule FR#4 mandates selecting expedited review when given the choice.",
+      "Per FR#4, strictly select expedited request if given the choice between standard and expedited review in all cases.",
+      "Per FixedResponse rule FR#4: when given the choice between standard and expedited review, strictly select expedited."
+    ],
+    "common_denial_gaps": [
+      "There is no information provided about the specific condition of the enrollee's life, health, or ability to regain maximum function.",
+      "No chart notes or records were provided confirming trials/failures of \u22653 equivalent formulary alternatives or contraindications/intolerances to all formulary alternatives.",
+      "There is no documentation of intolerance to individual ingredients.",
+      "There are no recorded failures of at least two additional formulary alternatives.",
+      "Allergy list is negative."
+    ]
+  },
+  "Testosterone": {
+    "n_cases": 22,
+    "approval_rate": 0.55,
+    "criteria_checklist": [],
+    "winning_evidence_examples": [
+      "Per Fixed Response rule FR#4: when given the choice between standard and expedited review, strictly select expedited request.",
+      "FR#4 mandates that when given the choice between standard and expedited review, strictly select expedited review.",
+      "The patient is 40 years old with documented low testosterone.",
+      "The workup suggests secondary hypogonadism (low/normal LH/FSH, prior elevated prolactin).",
+      "The diagnosis is E29.1 (testicular hypofunction)."
+    ],
+    "common_denial_gaps": [
+      "No lab results documenting a pretreatment total serum testosterone value are present.",
+      "The note mentions \u201cLow Testosterone\u201d from PCP but provides no value or dates.",
+      "No free serum testosterone lab results are documented in the record.",
+      "Only a note stating \u201cLow Testosterone\u201d without values is documented.",
+      "There is no documentation of a trial with a generic androgen or anabolic steroid."
+    ]
+  },
+  "Udenyca": {
+    "n_cases": 9,
+    "approval_rate": 0.67,
+    "criteria_checklist": [
+      {
+        "question": "Is the request for Expedited Review?",
+        "frequency": 0.33,
+        "appears_in": 3
+      }
+    ],
+    "winning_evidence_examples": [
+      "Per Fixed Response rule FR#4: when given the choice between standard and expedited review, strictly select expedited review.",
+      "FR#4 states to strictly select expedited request if given the choice between standard and expedited review in all cases.",
+      "When given the choice between standard and expedited review, strictly select expedited.",
+      "FR#34 explicitly states: \"If asked whether all formulary agents would be ineffective, always answer 'Yes'.\"",
+      "There is no documentation of adverse reactions to formulary G-CSF options."
+    ],
+    "common_denial_gaps": [
+      "The only G-CSF products noted are Udenyca (requested/current) and a filgrastim product (Zarxio), which is not one of the listed preferred pegfilgrastim alternatives.",
+      "No documented use of Fulphila or Ziextenzo."
+    ]
+  },
+  "Venofer": {
+    "n_cases": 45,
+    "approval_rate": 0.29,
+    "criteria_checklist": [
+      {
+        "question": "Is the request for Expedited Review?",
+        "frequency": 0.36,
+        "appears_in": 16
+      }
+    ],
+    "winning_evidence_examples": [
+      "The requested drug (Venofer) is being prescribed for iron deficiency anemia (ICD-10 D50.9).",
+      "Iron deficiency anemia is a legitimate medical condition.",
+      "Venofer (iron sucrose) is FDA-approved for iron deficiency anemia in patients with chronic kidney disease.",
+      "Diagnosis listed as D50.9 (Iron deficiency anemia, unspecified)",
+      "Only Venofer (iron sucrose) is documented."
+    ],
+    "common_denial_gaps": [
+      "Missing information on when Venofer will be initiated.",
+      "No scheduled completion.",
+      "Prior IV iron last given August 2025.",
+      "Medication #2 should be a previously tried agent with documented strength.",
+      "No documentation of discontinuation or end date in records."
+    ]
+  },
+  "Wegovy": {
+    "n_cases": 62,
+    "approval_rate": 0.63,
+    "criteria_checklist": [
+      {
+        "question": "Is the patient 18 years of age or older?",
+        "frequency": 0.44,
+        "appears_in": 27
+      },
+      {
+        "question": "Has the patient completed at least 3 months of therapy with the requested drug at a stable maintenance dose?",
+        "frequency": 0.44,
+        "appears_in": 27
+      },
+      {
+        "question": "Will the requested drug be used with a reduced-calorie diet AND increased physical activity to reduce excess body weight?",
+        "frequency": 0.44,
+        "appears_in": 27
+      },
+      {
+        "question": "Has the patient participated in a comprehensive weight management program that encourages behavioral modification, reduc?",
+        "frequency": 0.32,
+        "appears_in": 20
+      },
+      {
+        "question": "Does the patient have a baseline body mass index (BMI) of less than 27 kg/m2?",
+        "frequency": 0.32,
+        "appears_in": 20
+      }
+    ],
+    "winning_evidence_examples": [
+      "DOB is 2/1/1963",
+      "Today\u2019s date is 6/2/2026",
+      "DOB 2/1/1963; as of 2026-06-02, patient is 63 years old.",
+      "Note also documents \u201c63-year-old\u201d on 5/22/2026.",
+      "Diagnosis lists E66.9 Obesity, unspecified."
+    ],
+    "common_denial_gaps": [
+      "Insufficient documentation is available.",
+      "No evidence that all other formulary weight-loss agents would cause adverse effects.",
+      "Diagnosis with BMI ~31.2 is not explicitly mentioned in the answer.",
+      "No prior anti-obesity medications tried.",
+      "No contraindications or intolerances recorded."
+    ]
+  },
+  "Xgeva": {
+    "n_cases": 8,
+    "approval_rate": 0.62,
+    "criteria_checklist": [],
+    "winning_evidence_examples": [
+      "FR#4 mandates selecting expedited review when given the choice between standard and expedited review.",
+      "Per fixed response rule FR#4: when given the choice between standard and expedited review, strictly select expedited.",
+      "Records document metastatic prostate cancer with significant bone metastases.",
+      "Xgeva 120 mg SC q28 days is used to prevent skeletal-related events in solid tumor bone mets.",
+      "Per Fixed Response rule FR#38: when asked whether the member will be taking any additional medication therapy for this diagnosis, always answer \"No\"."
+    ],
+    "common_denial_gaps": [
+      "There is no mention of multiple myeloma in the thinking process.",
+      "Preferred options listed are OSENVELT and WYOST.",
+      "OSENVELT corresponds to the osteoporosis indications."
+    ]
+  },
+  "Zepbound": {
+    "n_cases": 98,
+    "approval_rate": 0.55,
+    "criteria_checklist": [
+      {
+        "question": "Will the requested drug be used with a reduced-calorie diet AND increased physical activity to reduce excess body weight?",
+        "frequency": 0.36,
+        "appears_in": 35
+      },
+      {
+        "question": "Has the patient completed at least 3 months of therapy with the requested drug at a stable maintenance dose?",
+        "frequency": 0.36,
+        "appears_in": 35
+      }
+    ],
+    "winning_evidence_examples": [
+      "Vitals in the attached records show BMI \u226532 prior to any GLP\u20111/GLP\u20111/GIP therapy.",
+      "On 12/5/2023, the patient's BMI was 33.6 (Height 60 in, Weight 172 lb).",
+      "Multiple subsequent pre-therapy readings are also \u226532.",
+      "Drug-specific fixed-response rule (DS$FR#7) applies for Zepbound; when asked whether the patient has engaged in behavioral modification/weight management, the rule directs to answer \"Yes\".",
+      "For Zepbound, the rule states to always answer Yes when asked if the medication will be used concomitantly with behavioral modification and a reduced-calorie diet."
+    ],
+    "common_denial_gaps": [
+      "Earlier April 2025 trial appears non-consecutive due to Wegovy in May 2025.",
+      "Notes mention reduced snoring but no objective sleep study indices.",
+      "No AHI/RDI data were submitted.",
+      "Entries state \"Medical records containing the required information have been attached\".",
+      "No documentation indicating prior insurance approval dates for Zepbound found in the medical record."
+    ]
+  }
+}

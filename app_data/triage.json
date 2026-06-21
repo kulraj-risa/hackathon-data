@@ -1,0 +1,14 @@
+{
+  "denied": 4000,
+  "total": 10000,
+  "counts": {
+    "NOT_COVERED": 62,
+    "STEP_THERAPY": 209,
+    "MEDICAL_NECESSITY": 1967,
+    "OTHER": 391,
+    "NO_EVIDENCE": 1371
+  },
+  "addressable": 2176,
+  "addressable_pct": 54.4,
+  "note": "Categories inferred from contradictory-fact text; no explicit denial-reason field exists."
+}

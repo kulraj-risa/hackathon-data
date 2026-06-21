@@ -1,12 +1,32 @@
+# Build context hygiene for local `docker build`.
+.git/
 venv/
 __pycache__/
 *.pyc
-.git/
+*.egg-info/
+.DS_Store
+
+# Not copied into the image (the Dockerfile copies only pyproject/README/src/app_data).
 data/
 models/
-*.md
-RISA-HACKATHON-COMPLETE-GUIDE.md
-.env
+pipelines/
+tools/
+scripts/
+docs/
+Private & Shared/
+*.pdf
+*.png
 
-# Frontend is a separate Cloud Run service (deployed from web/)
+# Other apps / frontends / vendored platform.
+frontend/
 web/
+pharmacy-app/
+pharmacy-dashboard-demo/
+one-risa-1/
+rpa_tools/
+boss-plugin/
+papers/
+extraction/
+
+.env
+.env.*

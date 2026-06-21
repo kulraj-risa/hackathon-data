@@ -1,0 +1,16 @@
+Copyright (c) 2026 RISA. All rights reserved.
+
+This software and its associated documentation (the "Software") are the
+confidential and proprietary property of RISA. The Software is provided for
+internal evaluation and development only.
+
+No part of the Software may be copied, modified, distributed, sublicensed, or
+made available to any third party without the prior written permission of RISA.
+
+The Software may process protected health information (PHI). Any use must comply
+with all applicable laws and regulations, including HIPAA. No PHI may be
+committed to source control or included in any build artifact.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.

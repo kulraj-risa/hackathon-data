@@ -1,0 +1,86 @@
+@use "risa-oasis-ui_v2/dist/library/colors" as colors;
+@use "risa-oasis-ui_v2/dist/library/mixins" as mixins;
+
+div.info-with-context-menu-container {
+  width: fit-content;
+
+  &--icon {
+    position: relative;
+
+    svg {
+      vertical-align: text-bottom;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &:hover ~ div {
+        display: block;
+        transition: all 0.3s ease-in;
+      }
+    }
+  }
+
+  &--menu-holder {
+    display: none;
+
+    position: absolute;
+    z-index: 2000;
+    transition: all 0.3s ease-in;
+    box-shadow: 0px 12px 16px rgba(0, 0, 0, 0.12);
+    border: 1px solid colors.$primaryGray15;
+    border-radius: 0.5rem;
+    background-color: white;
+
+    padding: 0.5rem 1rem;
+    width: 6rem;
+    max-height: 9.5rem;
+    overflow: auto;
+
+    &.__top {
+      top: 120%;
+      left: -240%;
+    }
+
+    &.__bottom {
+      bottom: 100%;
+      left: -240%;
+    }
+
+    div.context-menu-items {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      &--text {
+        color: #0f0f0f;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 0.75rem;
+        line-height: 1.125rem;
+        font-family: Lato;
+        text-align: center;
+      }
+
+      &--value {
+        &__true {
+          color: #008367;
+          font-style: normal;
+          font-weight: 700;
+          font-size: 0.75rem;
+          line-height: 1.125rem;
+          font-family: Lato;
+        }
+
+        &__false {
+          color: #cd0202;
+          font-style: normal;
+          font-weight: 700;
+          font-size: 0.75rem;
+          line-height: 1.125rem;
+          font-family: Lato;
+        }
+      }
+    }
+  }
+}

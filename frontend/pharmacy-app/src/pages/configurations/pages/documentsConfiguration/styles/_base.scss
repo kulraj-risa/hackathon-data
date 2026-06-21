@@ -1,0 +1,85 @@
+.configuration-browser {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px 10px;
+
+  // First section (organizations) gets no top margin
+  .section:first-child {
+    margin-top: 0;
+  }
+
+  h2 {
+    margin-top: 0;
+    color: #333;
+  }
+
+  // Style for section titles
+  .section-title {
+    min-width: 130px;
+    color: #555;
+    font-weight: 600;
+    font-size: 1rem;
+
+    .version-in-use-loading-inline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: 12px;
+      color: #6c757d;
+      font-weight: 500;
+      font-size: 0.8rem;
+      white-space: nowrap;
+    }
+  }
+
+  .loading-container,
+  .error-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+    text-align: center;
+
+    p {
+      margin-top: 10px;
+      color: #555;
+    }
+  }
+
+  .error-container {
+    h3 {
+      color: #d32f2f;
+    }
+
+    p {
+      margin-bottom: 20px;
+    }
+  }
+
+  .loading-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .no-data-message {
+    border-radius: 4px;
+    background-color: #f8f9fa;
+    padding: 10px;
+    color: #777;
+    font-style: italic;
+    text-align: center;
+  }
+
+  .config-select {
+    margin-bottom: 20px;
+  }
+}

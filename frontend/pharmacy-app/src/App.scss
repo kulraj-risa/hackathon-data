@@ -1,0 +1,433 @@
+div.custom-text-input-container {
+  div.input-container {
+    height: 2.625rem !important;
+  }
+
+  label {
+    display: flex;
+    gap: 0.25rem;
+    height: 1.125rem !important;
+
+    span.label-suffix {
+      align-self: baseline;
+    }
+  }
+
+  input {
+    min-height: 100% !important;
+  }
+}
+
+div.custom-select-container {
+  div.custom-select {
+    gap: 0.38rem !important;
+  }
+  div.label {
+    display: flex;
+    gap: 0.25rem;
+  }
+}
+
+div.custom-date-input-container {
+  div.date-input input {
+    height: 2.625rem !important;
+  }
+
+  div.label {
+    display: flex;
+    gap: 0.25rem;
+  }
+}
+
+dialog {
+  outline: none !important;
+}
+
+dialog[id*="insurance-modal"] {
+  width: 45% !important;
+  max-width: none !important;
+
+  div.modal-container {
+    filter: opacity(1);
+  }
+}
+
+dialog[id*="prescription-modal"] {
+  width: 35% !important;
+  max-width: none !important;
+}
+
+dialog[id*="diagnosis-codes-modal"] {
+  width: 75% !important;
+  max-width: none !important;
+}
+
+dialog[id*="nar-grid-modal"] {
+  width: 95% !important;
+  max-width: none !important;
+}
+
+dialog[id*="doc-viewer-modal"] {
+  width: 50% !important;
+  max-width: none !important;
+}
+
+dialog[id*="cmm-input-viewer-modal"] {
+  width: 50% !important;
+  max-width: none !important;
+}
+
+dialog[id*="nycbs-medical-pa-details"] {
+  width: 30% !important;
+  max-width: none !important;
+}
+
+dialog[id*="expandable-table-row-medication-modal"] {
+  width: 70% !important;
+  max-width: none !important;
+}
+
+dialog[id*="expandable-table-row-dosage-modal"] {
+  width: 70% !important;
+  max-width: none !important;
+}
+
+dialog[id*="expandable-table-row-diagnosis-modal"] {
+  width: 70% !important;
+  max-width: none !important;
+}
+
+dialog[id*="expandable-table-row-secondary-diagnosis-modal"] {
+  width: 70% !important;
+  max-width: none !important;
+}
+
+dialog[id*="expandable-table-row-insurance-modal"] {
+  width: 70% !important;
+  max-width: none !important;
+}
+
+dialog[id="view-comment-modal"] {
+  width: 50% !important;
+  max-width: none !important;
+}
+dialog[id="validate-ev-modal"] {
+  width: 50% !important;
+  max-width: none !important;
+}
+
+dialog[id="drug-label-modal"] {
+  width: 40% !important;
+  max-width: none !important;
+}
+
+dialog[id="pbm-config-modal"] {
+  width: 40% !important;
+  max-width: none !important;
+}
+
+dialog[id="parsed-insurance-card"] {
+  width: 40% !important;
+  max-width: none !important;
+}
+
+dialog[id="doc-viewer-modal-with-title"] {
+  width: 35rem !important;
+  max-width: none !important;
+}
+
+dialog[id="doc-viewer-with-side-navigation"] {
+  width: 60% !important;
+  max-width: none !important;
+}
+
+dialog[id="submission-summary-modal"] {
+  width: 30% !important;
+  max-width: none !important;
+  overflow: visible !important;
+  div.custom-modal-container {
+    overflow: inherit !important;
+
+    div.dialog-body {
+      overflow: inherit !important;
+    }
+  }
+}
+
+dialog[id="status-changed-to-hold-modal"] {
+  width: 25% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+}
+
+dialog[id="order-processing-info-modal"] {
+  width: 40% !important;
+  max-width: none !important;
+}
+
+dialog[id="draft-submission-modal"] {
+  width: 30% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+
+  div.dialog-body {
+    &:focus-visible,
+    &:focus {
+      outline: none !important;
+    }
+  }
+}
+
+div.pbm-name {
+  div.custom-options {
+    max-height: 12rem !important;
+  }
+}
+
+div.cmm_order__table-container {
+  div.table-container {
+    overflow: auto !important;
+  }
+}
+
+div.grecaptcha-badge {
+  visibility: hidden;
+}
+div.filter-options--body__options-option {
+  div.custom-checkbox-container {
+    gap: 0.5rem;
+  }
+}
+
+div.filter-modal--container {
+  dialog[id*="image-viewer-modal"] {
+    width: 95% !important;
+    max-width: none !important;
+  }
+}
+
+/* Pharma Pa Diff Viewer custom styles */
+div.pharma-pa-diff-viewer__body-content-middle-content {
+  pre.c-json-view {
+    background-color: #fff;
+  }
+
+  span.c-json-key {
+    color: #002b36;
+    font-size: 13px;
+  }
+
+  .c-json-line,
+  .c-json-p,
+  .c-json-feet {
+    padding: 0;
+  }
+
+  span.c-json-string,
+  span.c-json-null,
+  span.c-json-boolean,
+  span.c-json-number {
+    color: #cb4b16;
+    font-size: 13px;
+  }
+
+  span.c-json-comma,
+  span.c-json-pt {
+    color: #236a7c;
+    font-size: 13px;
+  }
+}
+
+dialog[id*="bulk-reassign-modal"],
+dialog[id*="final-status-modal"],
+dialog[id*="bo-values-modal"],
+dialog[id*="status-update-modal"],
+dialog[id*="comment-rpa-modal-new"] {
+  top: 30% !important;
+  overflow: visible !important;
+  div.custom-modal-container {
+    overflow: inherit !important;
+
+    div.dialog-body {
+      overflow: inherit !important;
+    }
+  }
+}
+
+dialog[id="approve-evbv-modal"] {
+  overflow: visible !important;
+  div.custom-modal-container {
+    overflow: inherit !important;
+
+    div.dialog-body {
+      overflow: inherit !important;
+    }
+  }
+}
+
+dialog[id*="form-config-viewer-modal"] {
+  width: 70% !important;
+  max-width: none !important;
+}
+
+dialog[id*="image-viewer-with-badges-modal"] {
+  width: 70% !important;
+  max-width: none !important;
+}
+
+dialog[id*="push-to-sftp-modal"] {
+  width: 50% !important;
+  max-width: none !important;
+
+  div.dialog-body {
+    &:focus-visible,
+    &:focus {
+      outline: none !important;
+    }
+  }
+}
+
+[data-rmiz-modal-overlay="visible"] {
+  background-color: rgba(1, 1, 1, 0.6) !important;
+}
+
+div.add-section-footer,
+div.add-field-footer {
+  button {
+    width: 100%;
+  }
+}
+
+div#form-config-modal {
+  width: 30% !important;
+}
+
+div.email-link-button {
+  button {
+    width: 100%;
+  }
+}
+
+div.status-log--footer {
+  button {
+    width: 100%;
+    height: 3rem !important;
+  }
+}
+
+/*To give the track a yellowish color*/
+::-webkit-scrollbar-track {
+  background: #f5f5f5;
+}
+
+/*Shrinking the scrollbar*/
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+/*Giving the thumb a gradient*/
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: linear-gradient(#c7c7c7, #e6e6e6);
+}
+
+div[class*="final-worklist-table--container"] {
+  table {
+    tbody {
+      tr {
+        &:hover {
+          background-color: white !important;
+        }
+      }
+      td:not(:last-child) {
+        cursor: default !important;
+        &:hover {
+          cursor: default !important;
+        }
+      }
+    }
+  }
+}
+
+div[class*="filter-options--body__options-option"] {
+  input[type="checkbox"] {
+    label {
+      font-size: 0.875rem !important;
+    }
+  }
+}
+
+/* --- Sidebar Slide Animations --- */
+.animate-slide-in {
+  transform: translateX(0);
+  opacity: 1;
+  transition:
+    opacity 0.5s ease-in-out,
+    transform 0.5s ease-in-out,
+    width 0.2s ease-in-out;
+}
+
+.animate-slide-out {
+  transform: translateX(-20px);
+  opacity: 0;
+  transition:
+    opacity 0.5s ease-in-out,
+    transform 0.5s ease-in-out,
+    width 0.2s ease-in-out;
+}
+
+/* --- Fade + Move Up --- */
+.animate-fade-up {
+  transform: translateY(0);
+  opacity: 1;
+  transition:
+    opacity 0.5s ease-in-out,
+    transform 0.5s ease-in-out;
+}
+
+.animate-fade-up-out {
+  transform: translateY(-10px);
+  opacity: 0;
+  transition:
+    opacity 0.5s ease-in-out,
+    transform 0.5s ease-in-out;
+}
+
+/* --- Fade + Move Down --- */
+.animate-fade-down {
+  transform: translateY(0);
+  opacity: 1;
+  transition:
+    opacity 0.5s ease-in-out,
+    transform 0.5s ease-in-out;
+}
+
+.animate-fade-down-out {
+  transform: translateY(10px);
+  opacity: 0;
+  transition:
+    opacity 0.5s ease-in-out,
+    transform 0.5s ease-in-out;
+}
+
+/* --- Staggered Items --- */
+.animate-stagger-in {
+  transform: translateX(0);
+  opacity: 1;
+  transition:
+    opacity 0.3s ease-in-out,
+    transform 0.3s ease-in-out;
+}
+
+.animate-stagger-out {
+  transform: translateX(-15px);
+  opacity: 0;
+  transition:
+    opacity 0.3s ease-in-out,
+    transform 0.3s ease-in-out;
+}
+
+.hide-cancel-btn button.footer-button-cancel {
+  display: none;
+}

@@ -1,0 +1,104 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ===== RISA (GTM follow-up-tracker / intel-risa / accsync) =====
+    // Owned by the follow-up-tracker team. Do NOT modify without coordinating
+    // with that app's owner. These will move to a dedicated `followup`
+    // database; this block is interim until that migration completes.
+    function isTeam() {
+      return request.auth != null
+        && request.auth.token.email != null
+        && request.auth.token.email.matches('.*@risalabs[.]ai');
+    }
+
+    match /accounts/{accountId} {
+      allow read, write: if isTeam();
+      match /calls/{callId}        { allow read, write: if isTeam(); }
+      match /followthrough/{docId} { allow read, write: if isTeam(); }
+    }
+    match /companies_deals/{docId} { allow read: if isTeam(); }
+    match /companies_mql/{docId}   { allow read: if isTeam(); }
+    match /emails_deals/{docId}    { allow read: if isTeam(); }
+    match /emails_mql/{docId}      { allow read: if isTeam(); }
+    match /followup_stats/{docId}  { allow read: if isTeam(); }
+    match /summaries/{docId}       { allow read: if isTeam(); }
+    match /sync_meta/{docId}       { allow read: if isTeam(); }
+    match /tracked_companies/{docId}       { allow read, write: if isTeam(); }
+    match /tracked_companies_audit/{docId} { allow read, write: if isTeam(); }
+    match /followthrough_tasks/{docId}     { allow read, write: if isTeam(); }
+    match /tasks/{docId}                   { allow read, write: if isTeam(); }
+    match /accsync_meetings/{meetingId}  { allow read, write: if isTeam(); }
+    match /accsync_action_items/{itemId} { allow read, write: if isTeam(); }
+    match /accsync_users/{userId}        { allow read, write: if isTeam(); }
+
+    // SERVER-ONLY (Admin SDK only) — secrets/raw; never client-readable
+    match /connected_mailboxes/{docId} { allow read, write: if false; }
+    match /private_mailboxes/{docId}   { allow read, write: if false; }
+    match /oauth_states/{docId}        { allow read, write: if false; }
+    match /sybill_inbox/{docId}        { allow read, write: if false; }
+    match /sybill_raw/{docId}          { allow read, write: if false; }
+
+    // ===== Pharmacy / OncoPA demo — owned by that team =====
+    match /providers/{docId} {
+      allow read: if request.auth != null;
+      allow create, update: if request.auth != null
+        && request.auth.uid == docId
+        && request.auth.token.email.lower().matches('.*@risalabs[.]ai$');
+    }
+    match /healthcare_facility/{facilityId} {
+      allow read: if request.auth != null;
+      match /{subcollection=**} { allow read: if request.auth != null; }
+    }
+    match /auth_config/{docId} {
+      allow read: if request.auth != null;
+      match /{subcollection=**} { allow read: if request.auth != null; }
+    }
+    match /onco_emr/{docId} {
+      allow read: if request.auth != null;
+      match /{subcollection=**} { allow read: if request.auth != null; }
+    }
+    match /orders/{docId} {
+      allow read: if request.auth != null;
+      match /{subcollection=**} { allow read: if request.auth != null; }
+    }
+    match /medical_pa_orders/{docId} {
+      allow read: if request.auth != null;
+      match /{subcollection=**} { allow read: if request.auth != null; }
+    }
+    match /configurations/{docId} {
+      allow read: if request.auth != null;
+      match /{subcollection=**} { allow read: if request.auth != null; }
+    }
+    match /cmm_workflow/{docId} {
+      allow read: if request.auth != null;
+      match /{subcollection=**} { allow read: if request.auth != null; }
+    }
+    match /cmm_events/{docId} {
+      allow read: if request.auth != null;
+      match /{subcollection=**} { allow read: if request.auth != null; }
+    }
+    match /api_config/{docId} {
+      allow read: if request.auth != null;
+      match /{subcollection=**} { allow read: if request.auth != null; }
+    }
+    match /nycbs_drug/{docId} {
+      allow read: if request.auth != null;
+    }
+    match /nycbs_medical_pa/{docId} {
+      allow read: if request.auth != null;
+      match /{subcollection=**} { allow read: if request.auth != null; }
+    }
+    match /nycbs_claims_pa/{docId} {
+      allow read: if request.auth != null;
+      match /{subcollection=**} { allow read: if request.auth != null; }
+    }
+    match /healthcare_facility_invitation/{docId} {
+      allow read: if request.auth != null;
+    }
+    match /client/{docId} {
+      allow read: if request.auth != null;
+      match /{subcollection=**} { allow read: if request.auth != null; }
+    }
+  }
+}

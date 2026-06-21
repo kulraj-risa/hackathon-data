@@ -1,0 +1,20 @@
+@use "risa-oasis-ui_v2/dist/library/colors" as colors;
+@use "risa-oasis-ui_v2/dist/library/mixins" as mixins;
+
+div.no-data-container {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  background-color: colors.$primaryGray16;
+  width: 100%;
+
+  height: 100%;
+
+  &__text {
+    @include mixins.h7-regular(colors.$primaryGray1);
+  }
+}

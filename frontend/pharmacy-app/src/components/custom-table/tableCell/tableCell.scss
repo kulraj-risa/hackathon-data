@@ -1,0 +1,116 @@
+@use "risa-oasis-ui_v2/dist/library/colors" as colors;
+@use "risa-oasis-ui_v2/dist/library/mixins" as mixins;
+
+.table-cell-btn {
+  &__link {
+    @include mixins.btn-link-text();
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+div.table-cell-text-with-context-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+div.table-cell-multiline-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  max-width: 100%;
+  overflow: hidden;
+
+  &__main {
+    @include mixins.small-semiBold(colors.$primaryGray1);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__secondary {
+    @include mixins.tiny-regular(colors.$primaryGray6);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.multiline__patientDetails .table-cell-multiline-text__main,
+.multiline__dateOfBirth .table-cell-multiline-text__main {
+  font-weight: 400;
+}
+
+div.table-cell-colored-text {
+  @include mixins.small-bold(colors.$primaryGray1);
+
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+div.table-cell-badge,
+div.table-cell-string-badge {
+  max-width: fit-content;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  @include mixins.x-tiny-bold(colors.$primaryGray1);
+  border-radius: 0.25rem;
+
+  padding: 0.125rem 0.375rem;
+}
+
+div.error-modal-container {
+  @include mixins.small-bold(colors.$tertiaryBlue4);
+}
+
+// .editable-text-cell {
+//   transition: background-color 0.2s ease;
+//   border-radius: 4px;
+//   padding: 4px 8px;
+//   width: 100%;
+//   min-height: 20px;
+
+//   &.clickable {
+//     cursor: pointer;
+
+//     &:hover {
+//       background-color: #f5f5f5;
+//     }
+//   }
+
+//   &.disabled {
+//     opacity: 0.6;
+//     cursor: not-allowed;
+//   }
+
+//   &--display {
+//     display: block;
+//     width: 100%;
+//     min-height: 16px;
+//     line-height: 1.4;
+//     word-break: break-word;
+//   }
+//   &--editing {
+//     width: 100%;
+
+//     .text-input {
+//       margin: 0;
+
+//       input {
+//         border: 2px solid #007bff;
+//         border-radius: 4px;
+//         background-color: white;
+//         padding: 4px 8px;
+//         font-size: inherit;
+//       }
+//     }
+//   }
+// }

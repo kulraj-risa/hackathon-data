@@ -1,0 +1,17 @@
+export enum LocalStorageKeys {
+  FEATURES = "features",
+  HEALTHCARE_FACILITY_ID = "healthcareFacilityId",
+  INTERNAL_ORGANIZATION_FACILITY_ID = "internalOrganizationFacilityId",
+  USER_ID = "userId",
+  BEARER_TOKEN = "bearerToken",
+  BO_COMMENTS = "boComments",
+  JCode_Docs = "jCodeDocs",
+  GLOBAL_BO_VALUE = "globalBoValue",
+  PARENT_TABLE = "parentTable",
+  EXISTING_JCODE_DOCS = "existingJCodeDocs",
+  AUTH_STATUS_CHANGES = "authStatusChanges",
+  VIEW_LEGACY = "viewLegacy",
+  CPT_CODES = "cptCodes",
+  J_CODES = "jCodes",
+  PAYER_NAME = "payerName",
+}

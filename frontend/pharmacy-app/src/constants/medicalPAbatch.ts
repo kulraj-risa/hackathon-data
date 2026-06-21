@@ -1,0 +1,6 @@
+export const PHARMA_PA_DIFF_TABLE_DOC_SIZE = 200;
+export const DOC_SIZE = 200;
+export const MEDICAL_PA_BATCH_SIZE = 1000;
+export const MAXIMUM_AUTO_FETCH_COUNT = 99;
+export const ALL_PA_ORDERS_FOR_EXTERNAL_TABLE_DOC_SIZE = 200;
+export const EXPORT_DATA_LIMIT = 3000;

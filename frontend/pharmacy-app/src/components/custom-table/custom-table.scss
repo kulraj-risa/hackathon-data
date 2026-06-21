@@ -1,0 +1,255 @@
+@use "risa-oasis-ui_v2/dist/library/colors" as colors;
+@use "risa-oasis-ui_v2/dist/library/mixins" as mixins;
+
+.table-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+
+  .table {
+    border: 1px solid colors.$primaryGray15;
+    border-top: none;
+    border-bottom-right-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+    overflow: auto;
+  }
+
+  .table-pagination {
+    @include mixins.row-flex(center, center, 0px);
+    position: relative;
+  }
+
+  .pagination-details {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    align-items: center;
+    z-index: 40;
+    height: 100%;
+
+    @include mixins.tiny-semiBold(colors.$primaryGray7);
+  }
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  height: 100%;
+  table-layout: fixed;
+  overflow: auto;
+
+  thead {
+    tr {
+      border: 1px solid colors.$primaryGray15;
+      border-bottom: none;
+      border-top-right-radius: 0.5rem;
+      border-top-left-radius: 0.5rem;
+    }
+    td {
+      border-bottom: 1px solid colors.$primaryGray15;
+      background-color: colors.$primaryGray16;
+      padding: 0.75rem 0.75rem;
+      text-align: left;
+      @include mixins.tiny-bold(colors.$primaryGray1);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      .header-details {
+        @include mixins.row-flex(flex-start, center, 0px);
+
+        img {
+          &:hover {
+            cursor: pointer;
+          }
+        }
+        &--icon {
+          svg {
+            vertical-align: bottom;
+          }
+        }
+      }
+
+      &:last-child {
+        border-radius: 0 0.5rem 0 0;
+      }
+
+      &:first-child {
+        border-radius: 0.5rem 0 0 0;
+      }
+    }
+  }
+
+  tbody {
+    td {
+      &.table-cell {
+        padding: 0.75rem 0.75rem;
+        text-align: left;
+        @include mixins.small-regular(colors.$primaryGray1);
+        border-bottom: 1px solid colors.$primaryGray15;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        &.info {
+          &__code,
+          &__authRequired {
+            overflow: visible;
+          }
+        }
+
+        &.icon__adminOptions {
+          overflow: visible;
+        }
+
+        &.multiline__patientName {
+          &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+          }
+        }
+        &.multiline__patientDetailsWithLeftBorder {
+          padding: 0 1.5rem 0 0 !important;
+        }
+      }
+    }
+
+    // Support for div-based table cells
+    div {
+      &.table-cell {
+        @include mixins.small-regular(colors.$primaryGray1);
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        &.info {
+          &__code,
+          &__authRequired {
+            overflow: visible;
+          }
+        }
+
+        &.icon__adminOptions {
+          overflow: visible;
+        }
+
+        &.multiline__patientName {
+          &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+          }
+        }
+        &.multiline__patientDetailsWithLeftBorder {
+          padding: 0 1.5rem 0 0 !important;
+        }
+
+        &.expandable-row-icon__expandableRowIcon {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 0 !important;
+        }
+
+        &.expanded {
+          border-bottom: none !important;
+          background-color: #fafafa;
+        }
+      }
+    }
+
+    tr {
+      div.single-row--container {
+        &.shadow {
+          box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+        }
+      }
+
+      // Handle the new td structure for expandable rows
+      td[colspan] {
+        border: none !important;
+        padding: 0 !important;
+
+        div.single-row--container {
+          &.shadow {
+            box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+          }
+        }
+      }
+    }
+
+    tr:last-child {
+      td:first-child {
+        border-radius: 0 0 0 0.5rem;
+      }
+
+      td:last-child {
+        border-radius: 0 0 0.5rem 0;
+      }
+    }
+
+    tr:last-child {
+      td {
+        border-bottom: none;
+      }
+    }
+
+    tr {
+      &:hover {
+        cursor: pointer !important;
+      }
+
+      // Ensure block display for new structure
+      &[style*="display: block"] {
+        display: block !important;
+      }
+
+      // Additional styling for expanded rows
+      &.expanded-row {
+        > td > div.single-row--container {
+          background-color: #fafafa;
+        }
+      }
+    }
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+    max-height: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+    max-height: 100%;
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+}
+
+.slide-down {
+  animation: slideDown 0.3s ease-out forwards;
+  transition: all 0.3s ease-out;
+}
+
+.slide-up {
+  animation: slideUp 0.3s ease-in forwards;
+  transition: all 0.3s ease-in;
+}

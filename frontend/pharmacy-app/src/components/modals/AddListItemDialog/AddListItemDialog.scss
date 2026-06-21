@@ -1,0 +1,46 @@
+@use "risa-oasis-ui_v2/dist/library/colors" as colors;
+@use "risa-oasis-ui_v2/dist/library/mixins" as mixins;
+
+.add-list-item-dialog {
+  padding: 1rem;
+  width: 100%;
+  max-width: 500px;
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .dialog-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 2rem;
+    border-top: 1px solid #e9ecef;
+    padding-top: 1rem;
+  }
+
+  .loading-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
+    background-color: #f8f9fa;
+    padding: 0 16px;
+    min-width: 80px;
+    height: 36px;
+  }
+
+  .error-message {
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+    color: #d32f2f;
+    font-size: 0.8rem;
+  }
+
+  .helper-text {
+    margin-top: 0;
+    color: #666;
+    font-size: 0.8rem;
+  }
+}

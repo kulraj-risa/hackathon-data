@@ -1,0 +1,25 @@
+@use "risa-oasis-ui_v2/dist/library/colors" as colors;
+@use "risa-oasis-ui_v2/dist/library/mixins" as mixins;
+
+a.nav-active {
+  div.icon-container {
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  div.label {
+    color: colors.$white;
+    font-weight: 600;
+  }
+}
+a.nav-inactive {
+  div.label {
+    color: colors.$primaryGray10;
+    font-weight: 400;
+  }
+
+  &:hover {
+    scale: 1.05;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+  }
+}

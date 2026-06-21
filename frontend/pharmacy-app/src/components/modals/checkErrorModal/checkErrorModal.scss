@@ -1,0 +1,35 @@
+@use "risa-oasis-ui_v2/dist/library/colors" as colors;
+@use "risa-oasis-ui_v2/dist/library/mixins" as mixins;
+
+div.error-check-modal-container {
+  &__reason {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 0.625rem;
+
+    margin-bottom: 1rem;
+
+    border-radius: 0.25rem;
+    background: #fff3e0;
+    padding: 0.75rem;
+    width: 35rem;
+    max-height: 11rem;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    white-space: break-spaces;
+  }
+
+  &__comments {
+    @include mixins.tiny-regular(colors.$primaryGray1);
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    textarea {
+      margin-top: 0.3rem;
+      padding: 0.5rem;
+      width: 35rem;
+      height: 7rem;
+    }
+  }
+}

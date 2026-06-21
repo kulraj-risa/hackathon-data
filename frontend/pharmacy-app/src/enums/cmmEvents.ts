@@ -1,0 +1,17 @@
+export enum CmmEvents {
+  SEND_TO_PLAN_CLICKED = "send_to_plan_clicked",
+  FORM_SAVE_CLICKED = "form_save_clicked",
+  CONTINUE_CLICKED_ON_INSURANCE_DETAILS = "continue_clicked_on_insurance_page",
+  SEND_TO_PLAN_MODAL_OPEN = "send_to_plan_modal_open",
+  SEND_TO_PLAN_MODAL_CLOSE = "send_to_plan_modal_close",
+  SEND_TO_PLAN_MODAL_CONFIRM = "send_to_plan_modal_confirm",
+  SEND_TO_PLAN_REQUEST_MADE = "send_to_plan_request_made",
+  SEND_TO_PLAN_REQUEST_SUCCESS = "send_to_plan_request_success",
+  SEND_TO_PLAN_REQUEST_ERROR = "send_to_plan_request_error",
+  SUBMIT_QUESTIONNAIRE_CLICKED = "submit_questionnaire_clicked",
+  CONTINUE_CLICKED_ON_FORM = "continue_clicked_on_form",
+  SAVE_CLICKED_ON_FORM = "save_clicked_on_form",
+  SEND_TO_PLAN_CLICKED_ON_FORM = "send_to_plan_clicked_on_form",
+  SEND_TO_PLAN_INITIATED = "send_to_plan_initiated",
+  EDIT_REQUEST_INITIATED = "edit_request_initiated",
+}

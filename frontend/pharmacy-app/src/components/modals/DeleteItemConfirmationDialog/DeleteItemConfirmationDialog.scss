@@ -1,0 +1,90 @@
+.delete-item-confirmation-dialog {
+  padding: 20px;
+  text-align: center;
+
+  .warning-icon {
+    margin-bottom: 20px;
+
+    i {
+      color: #ff6b6b;
+      font-size: 48px;
+    }
+  }
+
+  .confirmation-content {
+    margin-bottom: 30px;
+
+    .confirmation-message {
+      margin-bottom: 20px;
+      color: #333;
+      font-weight: 500;
+      font-size: 18px;
+    }
+
+    .item-details {
+      margin-bottom: 20px;
+      border: 1px solid #e9ecef;
+      border-radius: 8px;
+      background-color: #f8f9fa;
+      padding: 15px;
+      text-align: left;
+
+      .item-name,
+      .item-path {
+        margin-bottom: 8px;
+        font-size: 14px;
+
+        strong {
+          margin-right: 8px;
+          color: #495057;
+        }
+      }
+
+      .item-path {
+        margin-bottom: 0;
+        border: 1px solid #dee2e6;
+        border-radius: 4px;
+        background-color: #fff;
+        padding: 8px;
+        font-family: "Courier New", monospace;
+        word-break: break-all;
+      }
+    }
+
+    .warning-message {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid #ffeaa7;
+      border-radius: 6px;
+      background-color: #fff3cd;
+      padding: 12px;
+      color: #856404;
+      font-weight: 500;
+
+      i {
+        color: #f39c12;
+      }
+    }
+  }
+
+  .dialog-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    border-top: 1px solid #e9ecef;
+    padding-top: 20px;
+
+    .loading-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #dc3545;
+      border-radius: 6px;
+      background-color: #dc3545;
+      min-width: 100px;
+      height: 40px;
+    }
+  }
+}

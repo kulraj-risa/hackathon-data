@@ -1,0 +1,105 @@
+@use "risa-oasis-ui_v2/dist/library/colors" as colors;
+@use "risa-oasis-ui_v2/dist/library/mixins" as mixins;
+
+.auto-select-dropdown {
+  &__container {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    gap: 0.38rem;
+  }
+
+  &__label {
+    @include mixins.tiny-regular(colors.$primaryGray2);
+    display: flex;
+    gap: 0.25rem;
+
+    &-required {
+      @include mixins.tiny-regular(red);
+    }
+  }
+
+  &__input-holder {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid colors.$primaryGray14;
+    border-radius: 0.25rem;
+    padding: 0.62rem 0.75rem;
+    height: 2.625rem;
+    overflow: hidden;
+
+    input {
+      flex: 1;
+      outline: none !important;
+      width: 100%;
+      @include mixins.small-regular(colors.$primaryGray1);
+
+      &::placeholder {
+        @include mixins.tiny-regular(colors.$primaryGray7);
+      }
+    }
+
+    &-search {
+      padding: 0.75rem;
+    }
+
+    &.active {
+      border: 1px solid colors.$primaryGray2;
+    }
+
+    &.error {
+      border: 1px solid #cd0202;
+    }
+  }
+
+  &__dropdown {
+    display: flex;
+    position: absolute;
+    left: 0;
+    flex-direction: column;
+    z-index: 999;
+
+    box-shadow:
+      0px 12px 16px -4px rgba(16, 24, 40, 0.08),
+      0px 4px 6px -2px rgba(16, 24, 40, 0.03);
+    border: 1px solid colors.$primaryGray14;
+    border-radius: 0.5rem;
+    background-color: white;
+    padding: 0.25rem 0.38rem;
+    width: 100%;
+    max-height: 13rem;
+    overflow: auto;
+
+    &.bottom {
+      bottom: 5rem;
+    }
+
+    &.top {
+      top: 5rem;
+    }
+
+    &.top_error {
+      top: 6rem;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &-item {
+      border-radius: 0.25rem;
+      padding: 0.62rem 0.5rem;
+      @include mixins.small-regular(colors.$primaryGray1);
+
+      &:hover {
+        background-color: colors.$primaryGray16;
+      }
+    }
+  }
+
+  &__error {
+    @include mixins.tiny-regular(#cd0202);
+  }
+}

@@ -1,0 +1,57 @@
+@use "risa-oasis-ui_v2/dist/library/colors" as colors;
+@use "risa-oasis-ui_v2/dist/library/mixins" as mixins;
+.custom-radio {
+  display: flex;
+  position: relative;
+  @include mixins.tiny-regular(colors.$primaryGray2);
+  margin-bottom: 0.5rem;
+  padding-left: 1.5rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.custom-radio input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.custom-radio__checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 1px solid black;
+  border-radius: 50%;
+  background-color: white;
+  width: 1rem;
+  height: 1rem;
+}
+
+.custom-radio:hover input ~ .custom-radio__checkmark {
+  background-color: #ccc;
+}
+
+.custom-radio input:checked ~ .custom-radio__checkmark {
+  background-color: white;
+}
+
+.custom-radio__checkmark:after {
+  display: none;
+  position: absolute;
+  content: "";
+}
+
+.custom-radio input:checked ~ .custom-radio__checkmark:after {
+  display: block;
+}
+
+.custom-radio .custom-radio__checkmark:after {
+  top: 0.125rem;
+  left: 0.125rem;
+  border-radius: 50%;
+  background: black;
+  width: 0.625rem;
+  height: 0.625rem;
+}

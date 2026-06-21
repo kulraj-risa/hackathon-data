@@ -1,0 +1,42 @@
+@use "risa-oasis-ui_v2/dist/library/colors" as colors;
+@use "risa-oasis-ui_v2/dist/library/mixins" as mixins;
+
+div.info-grid {
+  &--container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    border: 1px solid colors.$primaryGray15;
+    border-radius: 0.5rem;
+
+    background-color: white;
+    padding: 0.75rem;
+    width: 100%;
+  }
+
+  &--singleDetail {
+    display: flex;
+
+    > div {
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    &--header {
+      @include mixins.small-regular(colors.$primaryGray1);
+      margin-right: 0.5rem;
+      text-align: left;
+    }
+
+    &--text {
+      @include mixins.small-semiBold(colors.$primaryGray1);
+      overflow: hidden;
+      text-align: right;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}
